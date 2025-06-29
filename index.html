@@ -3,32 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pocket Billing - Restaurant POS</title>
+    <title>EZO Billing - Restaurant POS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg warning-dark bg-warning">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar w/ text</a>
-    <img src="logo.png" alt="Avatar Logo" style="width:40px;" class="rounded-pill"> 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-      </ul>
-      <span class="navbar-text">
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="container-fluid">
+                <div class="row align-items-center py-3">
+                    <div class="col-12 text-center">
+                       
+                         <span class="navbar-text">
+                            <span sytle="font-size:20px; font-weight:800">Billing Sytem</span>
        <button type="button" class="btn btn-outline-secondary" fdprocessedid="06p0t8">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="light color" class="bi bi-cart" viewBox="0 0 16 16">
   <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"></path>
@@ -36,9 +25,16 @@
                   <span class="visually-hidden">Button</span>
                 </button>
       </span>
-    </div>
-  </div>
-</nav>
+                    </div>
+                    <div class="col-12">
+                         <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+                    </div>
+                </div>
+            </div>
+        </header>
 
         <!-- Main Content -->
         <main class="main-content">
