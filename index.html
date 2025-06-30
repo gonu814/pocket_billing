@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,68 +8,87 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+    <style>
+        .search {
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+}
+    </style>
 </head>
+
 <body>
     <div class="app-container">
         <!-- Header -->
         <header class="app-header">
             <div class="container-fluid">
-                <div class="row align-items-center py-3">
-                    <div class="col-12 text-center">
-                       
-                         <span class="navbar-text">
-                            <span sytle="font-size:20px; font-weight:800">Billing Sytem</span>
-       <button type="button" class="btn btn-outline-secondary" fdprocessedid="06p0t8">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="light color" class="bi bi-cart" viewBox="0 0 16 16">
-  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"></path>
-</svg>
-                  <span class="visually-hidden">Button</span>
-                </button>
-      </span>
-                    </div>
-                    <div class="col-12">
-                         <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+                <div class="row align-items-center py-3" style="background: #0d6efd;">
+                    <div class="row align-items-center py-3">
+                        <div class="col-12 text-center">
+                            <span class="navbar-text" style="font-size: 24px;font-weight: 500;">
+                                <span sytle="font-size:20px; font-weight:800">Billing Sytem</span>
+                                <button type="button" class="btn btn-outline-secondary"style="float: right;" fdprocessedid="06p0t8">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="light color"
+                                        class="bi bi-cart" viewBox="0 0 16 16">
+                                        <path
+                                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2">
+                                        </path>
+                                    </svg>
+                                    <span class="visually-hidden">Button</span>
+                                </button>
+                            </span>
+                        </div>
+
+                        <div class="col-12">
+                            <form class="d-flex">
+  <input type="text" class="search" name="search" placeholder="Search..">
+</form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </header>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <div class="container-fluid px-3">
-                <!-- Best Seller Section -->
-                <section class="menu-section">
-                    <h6 class="section-title mb-3 fw-semibold text-muted">Best Seller Items</h6>
-                    
-                    <div class="row g-2" id="menuGrid">
-                        <!-- Menu items will be dynamically loaded here -->
-                    </div>
-                </section>
-            </div>
-        </main>
-
-        <!-- Bottom Navigation/Actions -->
-        <footer class="bottom-section">
-            <div class="payment-summary px-3 py-2">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="text-muted">Received - ₹<span id="totalDisplay">00</span></span>
-                    <div class="payment-methods">
-                        <button class="btn btn-sm btn-outline-secondary me-1 payment-btn active" 
-                                data-method="cash" onclick="selectPaymentMethod('cash')">Cash</button>
-                        <button class="btn btn-sm btn-outline-secondary me-1 payment-btn" 
-                                data-method="bank" onclick="selectPaymentMethod('bank')">Bank</button>
-                        <button class="btn btn-sm btn-outline-secondary payment-btn" 
-                                data-method="cheque" onclick="selectPaymentMethod('cheque')">Cheque</button>
-                    </div>
+    </div>
+    </header>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container-fluid px-3">
+            <!-- Best Seller Section -->
+            <section class="menu-section">
+                <h6 class="section-title mb-3 fw-semibold text-muted">Best Seller Items</h6>
+                 
+                <div class="row g-2" id="menuGrid">
+                    <!-- Menu items will be dynamically loaded here -->
                 </div>
-                <button class="btn btn-primary w-100 py-2 fw-semibold save-btn" onclick="processOrder()">
-                    <i class="fas fa-save me-2"></i>Save Order
-                </button>
+            </section>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation/Actions -->
+    <footer class="bottom-section">
+        <div class="payment-summary px-3 py-2">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-muted">Received - ₹<span id="totalDisplay">00</span></span>
+                <div class="payment-methods">
+                    <button class="btn btn-sm btn-outline-secondary me-1 payment-btn active" data-method="cash"
+                        onclick="selectPaymentMethod('cash')">Cash</button>
+                    <button class="btn btn-sm btn-outline-secondary me-1 payment-btn" data-method="bank"
+                        onclick="selectPaymentMethod('bank')">Bank</button>
+                    <button class="btn btn-sm btn-outline-secondary payment-btn" data-method="cheque"
+                        onclick="selectPaymentMethod('cheque')">Cheque</button>
+                </div>
             </div>
-        </footer>
+            <button class="btn btn-primary w-100 py-2 fw-semibold save-btn" onclick="processOrder()">
+                <i class="fas fa-save me-2"></i>Save Order
+            </button>
+        </div>
+    </footer>
     </div>
 
     <!-- Discount Modal -->
@@ -92,13 +112,13 @@
                         </div>
                         <div class="mb-3">
                             <label for="discountValue" class="form-label">Discount Value</label>
-                            <input type="number" class="form-control" id="discountValue" 
-                                   placeholder="Enter discount percentage" min="0" step="0.01">
+                            <input type="number" class="form-control" id="discountValue"
+                                placeholder="Enter discount percentage" min="0" step="0.01">
                         </div>
                         <div class="mb-3">
                             <label for="discountReason" class="form-label">Reason (Optional)</label>
-                            <input type="text" class="form-control" id="discountReason" 
-                                   placeholder="e.g., Customer loyalty, Special offer">
+                            <input type="text" class="form-control" id="discountReason"
+                                placeholder="e.g., Customer loyalty, Special offer">
                         </div>
                         <div class="discount-preview p-2 bg-light rounded" id="discountPreview" style="display: none;">
                             <small class="text-muted">Preview:</small>
@@ -166,4 +186,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
 </body>
+
 </html>

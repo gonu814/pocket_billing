@@ -23,6 +23,14 @@ class EZOBillingApp {
         category: "Non-Veg",
       },
       { id: 9, name: "Veg Thali", price: 230, image: "/placeholder.svg?height=70&width=120", category: "Thali" },
+      { id: 10, name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
+      { id: 11, name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
+      { id: 12, name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
+      { id: 13, name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
+      { id: 14, name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
+      { id: 15, name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
+      { id:16 , name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
+      { id: 17, name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
     ]
 
     this.cart = {}

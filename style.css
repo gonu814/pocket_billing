@@ -4,6 +4,36 @@
   padding: 0;
   box-sizing: border-box;
 }
+@media (max-width: 767.98px) {
+  .app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    background-color: #0d6efd;
+  }
+
+  .main-content {
+    padding-top: 100px; /* leave space for fixed header */
+    padding-bottom: 120px; /* leave space for fixed footer */
+  }
+
+  .bottom-section {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 1020;
+    border-top: 1px solid #ccc;
+  }
+
+  /* Optional: prevent the page from scrolling behind modals */
+  body.modal-open {
+    padding-right: 0 !important;
+  }
+}
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -37,11 +67,7 @@ body {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* Main Content */
-.main-content {
-  padding-bottom: 120px; /* Space for bottom section */
-  min-height: calc(100vh - 80px);
-}
+
 
 .section-title {
   font-size: 16px;
