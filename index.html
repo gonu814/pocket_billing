@@ -21,12 +21,156 @@
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
 }
-    </style>
+
+        /* Mobile-only fixed header and footer styles */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
+            /* Fixed Header */
+            .app-header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                background: #0d6efd !important;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            /* Fixed Footer */
+            .bottom-section {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                background: white;
+                border-top: 1px solid #dee2e6;
+                box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            }
+
+            /* Main content spacing to account for fixed header and footer */
+            .main-content {
+                margin-top: 140px; /* Adjust based on header height */
+                margin-bottom: 120px; /* Adjust based on footer height */
+                min-height: calc(100vh - 260px);
+            }
+
+            /* Ensure app container takes full height */
+            .app-container {
+                min-height: 100vh;
+                position: relative;
+            }
+
+            /* Header content styling for mobile */
+            .app-header .container-fluid {
+                padding: 0;
+            }
+
+            .app-header .row {
+                margin: 0;
+            }
+
+            /* Make header text white and visible */
+            .app-header .navbar-text {
+                color: white !important;
+            }
+
+            /* Cart button styling */
+            .app-header .btn-outline-secondary {
+                border-color: white;
+                color: white;
+            }
+
+            .app-header .btn-outline-secondary:hover {
+                background-color: white;
+                color: #0d6efd;
+            }
+
+            /* Search bar in header */
+            .app-header .search {
+                margin-top: 10px;
+                border: 1px solid rgba(255,255,255,0.3);
+                background-color: rgba(255,255,255,0.9);
+            }
+
+            /* Payment summary styling */
+            .payment-summary {
+                background: white;
+                padding: 15px !important;
+            }
+
+            /* Payment buttons */
+            .payment-btn {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+
+            .payment-btn.active {
+                background-color: #0d6efd;
+                color: white;
+                border-color: #0d6efd;
+            }
+
+            /* Save button */
+            .save-btn {
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            /* Menu section styling */
+            .menu-section {
+                padding: 20px 0;
+            }
+
+            .section-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+        }
+
+        /* Desktop styles - normal layout */
+        @media (min-width: 769px) {
+            .app-header {
+                position: relative;
+            }
+
+            .bottom-section {
+                position: relative;
+            }
+
+            .main-content {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+        }
+
+        /* General improvements */
+        .app-container {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Menu grid improvements */
+        #menuGrid {
+            padding: 0 10px;
+        }
+
+        /* Modal improvements for mobile */
+        @media (max-width: 768px) {
+            .modal-dialog {
+                margin: 10px;
+                max-width: calc(100% - 20px);
+            }
+        }  
+  </style>
 </head>
 
 <body>
     <div class="app-container">
-        <!-- Header -->
+          <!-- Fixed Header (Mobile Only) -->
         <header class="app-header">
             <div class="container-fluid">
                 <div class="row align-items-center py-3" style="background: #0d6efd;">
@@ -45,7 +189,6 @@
                                 </button>
                             </span>
                         </div>
-
                         <div class="col-12">
                             <form class="d-flex">
   <input type="text" class="search" name="search" placeholder="Search..">
@@ -70,7 +213,7 @@
         </div>
     </main>
 
-    <!-- Bottom Navigation/Actions -->
+     <!-- Fixed Bottom Footer (Mobile Only) -->
     <footer class="bottom-section">
         <div class="payment-summary px-3 py-2">
             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -90,7 +233,7 @@
         </div>
     </footer>
     </div>
-
+ <!-- All your existing modals remain the same -->
     <!-- Discount Modal -->
     <div class="modal fade" id="discountModal" tabindex="-1" aria-labelledby="discountModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
