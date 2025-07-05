@@ -63,7 +63,7 @@ class EZOBillingApp {
     }
   }
 
-  renderMenuItems() {
+renderMenuItems() {
   const container = document.getElementById("menuGrid");
   if (!container) return;
 
@@ -90,7 +90,7 @@ class EZOBillingApp {
         <div class="d-flex justify-content-between align-items-center">
           <span class="item-price">₹${item.price}</span>
           <div class="quantity-container">
-            <button class="add-btn" onclick="app.addToCart(${item.id})">+</button>
+            <button class="add-btn" onclick="app.singleAddToCart(${item.id}, event)">+</button>
             ${quantity > 0 ? `<span class="quantity-badge">${quantity}</span>` : ""}
           </div>
         </div>
@@ -134,24 +134,35 @@ class EZOBillingApp {
     element.addEventListener("touchstart", handleTap, { passive: false })
     element.addEventListener("click", handleTap)
   }
-
+singleAddToCart(itemId) {
+  // Prevent the default click behavior
+  event.stopPropagation();
+  
+  // Add just one item
+  this.addToCart(itemId, 1);
+  
+  // Show single item added feedback
+  const item = this.getItemById(itemId);
+  console.log(`Single tap: Added 1x ${item.name}`);
+}
   handleDoubleTap(element, itemId) {
-    // Add 2 items to cart
-    this.addToCart(itemId, 1)
+  // Add 2 items to cart
+  this.addToCart(itemId, 2);
 
-    // Visual feedback
-    element.classList.add("double-tap-animation")
-    setTimeout(() => {
-      element.classList.remove("double-tap-animation")
-    }, 400)
+  // Visual feedback
+  element.classList.add("double-tap-animation");
+  setTimeout(() => {
+    element.classList.remove("double-tap-animation");
+  }, 400);
 
-    // Haptic feedback (if supported)
-    if (navigator.vibrate) {
-      navigator.vibrate([50, 50, 50])
-    }
-
-    console.log(`Double tap: Added 2x ${this.getItemById(itemId).name}`)
+  // Haptic feedback (if supported)
+  if (navigator.vibrate) {
+    navigator.vibrate([50, 50, 50]);
   }
+
+  const item = this.getItemById(itemId);
+  console.log(`Double tap: Added 2x ${item.name}`);
+}
 
   addToCart(itemId, quantity = 1) {
     if (!this.cart[itemId]) {
