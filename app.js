@@ -137,7 +137,7 @@ class EZOBillingApp {
 
   handleDoubleTap(element, itemId) {
     // Add 2 items to cart
-    this.addToCart(itemId, 2)
+    this.addToCart(itemId, 1)
 
     // Visual feedback
     element.classList.add("double-tap-animation")
