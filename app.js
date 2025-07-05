@@ -1,38 +1,31 @@
 // Application State
 class EZOBillingApp {
   constructor() {
+   
     this.menuItems = [
-      { id: 1, name: "Idli", price: 50, image: "/placeholder.svg?height=70&width=120", category: "South Indian" },
-      { id: 2, name: "Dosa", price: 100, image: "/placeholder.svg?height=70&width=120", category: "South Indian" },
-      { id: 3, name: "Vada", price: 50, image: "/placeholder.svg?height=70&width=120", category: "South Indian" },
-      { id: 4, name: "Biryani", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Rice" },
-      { id: 5, name: "Noodles", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Chinese" },
-      { id: 6, name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
-      {
-        id: 7,
-        name: "Chicken Tandoori",
-        price: 250,
-        image: "/placeholder.svg?height=70&width=120",
-        category: "Non-Veg",
-      },
-      {
-        id: 8,
-        name: "Chicken Biryani",
-        price: 250,
-        image: "/placeholder.svg?height=70&width=120",
-        category: "Non-Veg",
-      },
-      { id: 9, name: "Veg Thali", price: 230, image: "/placeholder.svg?height=70&width=120", category: "Thali" },
-      { id: 10, name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
-      { id: 11, name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
-      { id: 12, name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
-      { id: 13, name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
-      { id: 14, name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
-      { id: 15, name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
-      { id:16 , name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
-      { id: 17, name: "Pao Bhaji", price: 150, image: "/placeholder.svg?height=70&width=120", category: "Street Food" },
-    ]
-
+      { id: 1, name: "Idli", price: 50, image: "idli.jpg", category: "South Indian" },
+      { id: 2, name: "Dosa", price: 100, image: "Masala-Dosa.jpg", category: "South Indian" },
+      { id: 3, name: "Vada", price: 50, image: "Vada.jpg", category: "South Indian" },
+      { id: 4, name: "Biryani", price: 150, image: "Veg-Dum-Biryani.jpg", category: "Rice" },
+      { id: 5, name: "Noodles", price: 150, image: "https://via.placeholder.com/120x70?text=Noodles", category: "Chinese" },
+      { id: 6, name: "Pao Bhaji", price: 150, image: "https://via.placeholder.com/120x70?text=Pao+Bhaji", category: "Street Food" },
+      { 
+  id: 7, 
+  name: "Chicken Curry", 
+  price: 250, 
+  image: "red-chicken-curry.jpg", 
+  category: "Non-Veg",
+  imageStyle: "width: 50px; height: auto; object-fit: cover; border-radius: 6px; margin: 0 auto;" 
+},
+      { id: 8, name: "Chicken Biryani", price: 250, image: "https://via.placeholder.com/120x70?text=Chicken+Biryani", category: "Non-Veg" },
+      { id: 9, name: "Veg Thali", price: 230, image: "https://via.placeholder.com/120x70?text=Veg+Thali", category: "Thali" },
+      { id: 10, name: "Samosa", price: 40, image: "https://via.placeholder.com/120x70?text=Samosa", category: "Street Food" },
+      { id: 11, name: "Chole Bhature", price: 120, image: "https://via.placeholder.com/120x70?text=Chole+Bhature", category: "Street Food" },
+      { id: 12, name: "Pav Bhaji", price: 110, image: "https://via.placeholder.com/120x70?text=Pav+Bhaji", category: "Street Food" },
+      { id: 13, name: "Masala Chai", price: 30, image: "https://via.placeholder.com/120x70?text=Masala+Chai", category: "Beverages" },
+      { id: 14, name: "Lassi", price: 60, image: "https://via.placeholder.com/120x70?text=Lassi", category: "Beverages" },
+      { id: 15, name: "Gulab Jamun", price: 80, image: "https://via.placeholder.com/120x70?text=Gulab+Jamun", category: "Desserts" }
+    ];
     this.cart = {}
     this.paymentMethod = "cash"
     this.discount = { type: "percentage", value: 0, reason: "" }
@@ -71,38 +64,43 @@ class EZOBillingApp {
   }
 
   renderMenuItems() {
-    const container = document.getElementById("menuGrid")
-    if (!container) return
+  const container = document.getElementById("menuGrid");
+  if (!container) return;
 
-    container.innerHTML = ""
+  container.innerHTML = "";
 
-    this.menuItems.forEach((item) => {
-      const quantity = this.cart[item.id] || 0
+  this.menuItems.forEach((item) => {
+    const quantity = this.cart[item.id] || 0;
 
-      const itemElement = document.createElement("div")
-      itemElement.className = "col-4 mb-3"
+    const itemElement = document.createElement("div");
+    itemElement.className = "col-4 mb-3";
 
-      itemElement.innerHTML = `
-                <div class="menu-item" data-item-id="${item.id}">
-                    <img src="${item.image}" alt="${item.name}" class="item-image" loading="lazy">
-                    <div class="item-name">${item.name}</div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="item-price">₹${item.price}</span>
-                        <div class="quantity-container">
-                            <button class="add-btn" onclick="app.addToCart(${item.id})" aria-label="Add ${item.name}">+</button>
-                            ${quantity > 0 ? `<span class="quantity-badge">${quantity}</span>` : ""}
-                        </div>
-                    </div>
-                </div>
-            `
+    // Default image style
+    const defaultStyle = 'width: 100%; height: 70px; object-fit: cover; border-radius: 6px;';
+    
+    itemElement.innerHTML = `
+      <div class="menu-item" data-item-id="${item.id}">
+        <div class="image-container" style="display: flex; justify-content: center;">
+          <img src="${item.image}" alt="${item.name}" 
+               style="${item.imageStyle || defaultStyle}"
+               class="item-image ${item.imageStyle ? 'custom-size' : ''}" 
+               loading="lazy">
+        </div>
+        <div class="item-name">${item.name}</div>
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="item-price">₹${item.price}</span>
+          <div class="quantity-container">
+            <button class="add-btn" onclick="app.addToCart(${item.id})">+</button>
+            ${quantity > 0 ? `<span class="quantity-badge">${quantity}</span>` : ""}
+          </div>
+        </div>
+      </div>
+    `;
 
-      container.appendChild(itemElement)
-
-      // Add double tap functionality
-      const menuItemDiv = itemElement.querySelector(".menu-item")
-      this.addDoubleTapListener(menuItemDiv, item.id)
-    })
-  }
+    container.appendChild(itemElement);
+    this.addDoubleTapListener(itemElement.querySelector(".menu-item"), item.id);
+  });
+}
 
   addDoubleTapListener(element, itemId) {
     let touchStartTime = 0

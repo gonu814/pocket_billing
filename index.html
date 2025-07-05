@@ -10,19 +10,19 @@
     <link href="styles.css" rel="stylesheet">
     <style>
         .search {
-  width: 100%;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: white;
-  background-image: url('searchicon.png');
-  background-position: 10px 10px; 
-  background-repeat: no-repeat;
-  padding: 12px 20px 12px 40px;
-}
+            width: 100%;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+        }
 
-        /* Mobile-only fixed header and footer styles */
+        /* Mobile-specific enhancements */
         @media (max-width: 768px) {
             body {
                 padding-top: 0;
@@ -37,7 +37,7 @@
                 right: 0;
                 z-index: 1000;
                 background: white !important;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             }
 
             /* Fixed Footer */
@@ -49,19 +49,21 @@
                 z-index: 1000;
                 background: white;
                 border-top: 1px solid #dee2e6;
-                box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+                box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
             }
 
             /* Main content spacing to account for fixed header and footer */
             .main-content {
-                margin-top: 140px; /* Adjust based on header height */
-                margin-bottom: 120px; /* Adjust based on footer height */
+                margin-top: 120px;
+                /* Adjust based on header height */
+                margin-bottom: 120px;
+                /* Adjust based on footer height */
                 min-height: calc(100vh - 260px);
             }
 
             /* Ensure app container takes full height */
             .app-container {
-                min-height: 100vh;
+                min-height: 8vh;
                 position: relative;
             }
 
@@ -93,7 +95,7 @@
             /* Search bar in header */
             .app-header .search {
                 margin-top: 10px;
-                border: 1px solid rgb(255, 255, 255);
+                border: 0px solid rgb(255, 255, 255);
                 background-color: rgb(255, 255, 255);
             }
 
@@ -120,31 +122,43 @@
                 font-size: 16px;
                 font-weight: 600;
             }
-             /* Menu section styling */
+
+            /* Menu section styling */
             .menu-section {
-                padding: 0px 0;
+                padding-top: 10px;
+                /* Add some padding at the top of the menu section */
             }
 
             .section-title {
-                font-size: 18px;
-                margin-bottom: 0px;
-                margin-top: 0px;
+                margin-top: 0 !important;
+            }
+        }
+        /* Adjust the main content margin-top for mobile to match your header height */
+        @media (max-width: 768px) {
+            .main-content {
+                margin-top: 120px;
+                /* Reduced from 140px to make it tighter */
+                padding-top: 0;
+                /* Remove any additional padding */
+            }
+
+            /* Remove any extra margin/padding from the menu section */
+            .menu-section {
+                padding-top: 0;
+                margin-top: 0;
+            }
+
+            /* Ensure the section title has minimal top margin */
+            .section-title {
+                margin-top: 0 !important;
             }
         }
 
-        /* Desktop styles - normal layout */
+        /* For desktop, make sure there's no extra space */
         @media (min-width: 769px) {
-            .app-header {
-                position: relative;
-            }
-
-            .bottom-section {
-                position: relative;
-            }
-
-            .main-content {
-                margin-top: 0;
-                margin-bottom: 0;
+            .menu-section {
+                padding-top: 20px;
+                /* Reasonable padding for desktop */
             }
         }
 
@@ -164,22 +178,23 @@
                 margin: 10px;
                 max-width: calc(100% - 20px);
             }
-        }  
-  </style>
+        }
+    </style>
 </head>
 
 <body>
     <div class="app-container">
-          <!-- Fixed Header (Mobile Only) -->
+        <!-- Fixed Header (Mobile Only) -->
         <header class="app-header">
             <div class="container-fluid">
                 <div class="row align-items-center py-3" style="background: #0d6efd;">
                     <div class="row align-items-center py-3">
                         <div class="col-12 text-center">
-                            <span class="navbar-text" style="font-size: 24px;font-weight: 500;">
-                                <span sytle="font-size:20px; font-weight:800">Billing Sytem</span>
-                                <button type="button" class="btn btn-outline-secondary"style="float: right;" fdprocessedid="06p0t8">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="light color"
+                            <span class="navbar-text" style="font-size: 28px;font-weight: 500;">
+                                <span sytle="font-size:24px; font-weight:500">Billing Sytem</span>
+                                <button type="button" class="btn btn-outline-secondary"
+                                    style="float: right; background-color:darkgreen" fdprocessedid="06p0t8">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="light color"
                                         class="bi bi-cart" viewBox="0 0 16 16">
                                         <path
                                             d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2">
@@ -191,140 +206,155 @@
                         </div>
                         <div class="col-12">
                             <form class="d-flex">
-  <input type="text" class="search" name="search" placeholder="Search.."">
+                                <input type="text" class="search" name="search" placeholder="Search.."">
 </form>
                         </div>
                     </div>
                 </div>
-            </div>
-    </div>
+            </div>   
+        </div>           
     </header>
     <!-- Main Content -->
-    <main class="main-content">
-        <div class="container-fluid px-3">
-            <!-- Best Seller Section -->
-            <section class="menu-section">
-                <h6 class="section-title mb-3 fw-semibold text-muted">Best Seller Items</h6>               
-                <div class="row g-2" id="menuGrid">
-                    <!-- Menu items will be dynamically loaded here -->
-                </div>
-            </section>
-        </div>
-    </main>
+    <main class=" main-content">
+                                <div class="container-fluid px-10">
+                                    <!-- Best Seller Section -->
+                                    <section class="menu-section">
+                                        <h6 class="section-title mb-3 fw-bold text-muted">Best Seller Items</h6>
+                                        <div class="row g-2" id="menuGrid">
+                                            <!-- Menu items will be dynamically loaded here -->
+                                        </div>
+                                    </section>
+                                </div>
+                                </main>
 
-     <!-- Fixed Bottom Footer (Mobile Only) -->
-    <footer class="bottom-section">
-        <div class="payment-summary px-3 py-2">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="text-muted">Received - ₹<span id="totalDisplay">00</span></span>
-                <div class="payment-methods">
-                    <button class="btn btn-sm btn-outline-secondary me-1 payment-btn active" data-method="cash"
-                        onclick="selectPaymentMethod('cash')">Cash</button>
-                    <button class="btn btn-sm btn-outline-secondary payment-btn" data-method="cheque"
-                        onclick="selectPaymentMethod('cheque')">UPI</button>
-                </div>
-            </div>
-            <button class="btn btn-primary w-100 py-2 fw-semibold save-btn" onclick="processOrder()">
-                <i class="fas fa-save me-2"></i>Save Order
-            </button>
-        </div>
-    </footer>
-    </div>
- <!-- All your existing modals remain the same -->
-    <!-- Discount Modal -->
-    <div class="modal fade" id="discountModal" tabindex="-1" aria-labelledby="discountModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="discountModalLabel">
-                        <i class="fas fa-percent me-2"></i>Apply Discount
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="discountForm">
-                        <div class="mb-3">
-                            <label for="discountType" class="form-label">Discount Type</label>
-                            <select class="form-select" id="discountType" onchange="updateDiscountPlaceholder()">
-                                <option value="percentage">Percentage (%)</option>
-                                <option value="fixed">Fixed Amount (₹)</option>
-                            </select>
+                                <!-- Fixed Bottom Footer (Mobile Only) -->
+                                <footer class="bottom-section">
+                                    <div class="payment-summary px-3 py-2">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="text-muted">Received - ₹<span
+                                                    id="totalDisplay">00</span></span>
+                                            <div class="payment-methods">
+                                                <button class="btn btn-sm btn-outline-secondary me-1 payment-btn active"
+                                                    data-method="cash"
+                                                    onclick="selectPaymentMethod('cash')">Cash</button>
+                                                <button class="btn btn-sm btn-outline-secondary payment-btn"
+                                                    data-method="cheque"
+                                                    onclick="selectPaymentMethod('cheque')">UPI</button>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary w-100 py-2 fw-semibold save-btn"
+                                            onclick="processOrder()">
+                                            <i class="fas fa-save me-2"></i>Save Order
+                                        </button>
+                                    </div>
+                                </footer>
                         </div>
-                        <div class="mb-3">
-                            <label for="discountValue" class="form-label">Discount Value</label>
-                            <input type="number" class="form-control" id="discountValue"
-                                placeholder="Enter discount percentage" min="0" step="0.01">
+                        <!-- All your existing modals remain the same -->
+                        <!-- Discount Modal -->
+                        <div class="modal fade" id="discountModal" tabindex="-1" aria-labelledby="discountModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="discountModalLabel">
+                                            <i class="fas fa-percent me-2"></i>Apply Discount
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="discountForm">
+                                            <div class="mb-3">
+                                                <label for="discountType" class="form-label">Discount Type</label>
+                                                <select class="form-select" id="discountType"
+                                                    onchange="updateDiscountPlaceholder()">
+                                                    <option value="percentage">Percentage (%)</option>
+                                                    <option value="fixed">Fixed Amount (₹)</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="discountValue" class="form-label">Discount Value</label>
+                                                <input type="number" class="form-control" id="discountValue"
+                                                    placeholder="Enter discount percentage" min="0" step="0.01">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="discountReason" class="form-label">Reason (Optional)</label>
+                                                <input type="text" class="form-control" id="discountReason"
+                                                    placeholder="e.g., Customer loyalty, Special offer">
+                                            </div>
+                                            <div class="discount-preview p-2 bg-light rounded" id="discountPreview"
+                                                style="display: none;">
+                                                <small class="text-muted">Preview:</small>
+                                                <div id="discountPreviewText"></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-success" onclick="applyDiscount()">
+                                            <i class="fas fa-check me-2"></i>Apply Discount
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="discountReason" class="form-label">Reason (Optional)</label>
-                            <input type="text" class="form-control" id="discountReason"
-                                placeholder="e.g., Customer loyalty, Special offer">
-                        </div>
-                        <div class="discount-preview p-2 bg-light rounded" id="discountPreview" style="display: none;">
-                            <small class="text-muted">Preview:</small>
-                            <div id="discountPreviewText"></div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-success" onclick="applyDiscount()">
-                        <i class="fas fa-check me-2"></i>Apply Discount
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Bill Preview Modal -->
-    <div class="modal fade" id="billModal" tabindex="-1" aria-labelledby="billModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="billModalLabel">
-                        <i class="fas fa-receipt me-2"></i>Order Bill
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="billContent" class="bill-container">
-                        <!-- Bill content will be generated here -->
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="printBill()">
-                        <i class="fas fa-print me-2"></i>Print Bill
-                    </button>
-                    <button type="button" class="btn btn-success" onclick="completeBilling()">
-                        <i class="fas fa-check-circle me-2"></i>Complete Order
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <!-- Bill Preview Modal -->
+                        <div class="modal fade" id="billModal" tabindex="-1" aria-labelledby="billModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="billModalLabel">
+                                            <i class="fas fa-receipt me-2"></i>Order Bill
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div id="billContent" class="bill-container">
+                                            <!-- Bill content will be generated here -->
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" onclick="printBill()">
+                                            <i class="fas fa-print me-2"></i>Print Bill
+                                        </button>
+                                        <button type="button" class="btn btn-success" onclick="completeBilling()">
+                                            <i class="fas fa-check-circle me-2"></i>Complete Order
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    <!-- Success Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body text-center py-4">
-                    <div class="success-icon mb-3">
-                        <i class="fas fa-check-circle text-success" style="font-size: 3rem;"></i>
-                    </div>
-                    <h5 class="mb-2">Order Completed Successfully!</h5>
-                    <p class="text-muted mb-3">Your order has been processed and saved.</p>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="resetApp()">
-                        Start New Order
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <!-- Success Modal -->
+                        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center py-4">
+                                        <div class="success-icon mb-3">
+                                            <i class="fas fa-check-circle text-success" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="mb-2">Order Completed Successfully!</h5>
+                                        <p class="text-muted mb-3">Your order has been processed and saved.</p>
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                            onclick="resetApp()">
+                                            Start New Order
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="app.js"></script>
+                        <!-- Scripts -->
+                        <script
+                            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+                        <script src="app.js"></script>
 </body>
 
 </html>
