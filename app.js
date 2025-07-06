@@ -209,33 +209,35 @@ singleAddToCart(itemId) {
   getItemById(id) {
     return this.menuItems.find((item) => item.id == id)
   }
+  // 
+  
 
-  selectPaymentMethod(method) {
-    this.paymentMethod = method
+  // selectPaymentMethod(method) {
+  //   this.paymentMethod = method
 
-    // Update UI
-    document.querySelectorAll(".payment-btn").forEach((btn) => {
-      btn.classList.remove("active")
-    })
+  //   // Update UI
+  //   document.querySelectorAll(".payment-btn").forEach((btn) => {
+  //     btn.classList.remove("active")
+  //   })
 
-    const activeBtn = document.querySelector(`[data-method="${method}"]`)
-    if (activeBtn) {
-      activeBtn.classList.add("active")
-    }
+  //   const activeBtn = document.querySelector(`[data-method="${method}"]`)
+  //   if (activeBtn) {
+  //     activeBtn.classList.add("active")
+  //   }
 
-    console.log(`Payment method selected: ${method}`)
-  }
+  //   console.log(`Payment method selected: ${method}`)
+  // }
 
-  processOrder() {
-    if (Object.keys(this.cart).length === 0) {
-      this.showToast("Please add items to cart before processing order", "warning")
-      return
-    }
+  // processOrder() {
+  //   if (Object.keys(this.cart).length === 0) {
+  //     this.showToast("Please add items to cart before processing order", "warning")
+  //     return
+  //   }
 
-    // Show discount modal
-    const discountModal = window.bootstrap.Modal(document.getElementById("discountModal"))
-    discountModal.show()
-  }
+  //   // Show discount modal
+  //   const discountModal = window.bootstrap.Modal(document.getElementById("discountModal"))
+  //   discountModal.show()
+  // }
 
   updateDiscountPlaceholder() {
     const discountType = document.getElementById("discountType").value
