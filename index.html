@@ -243,12 +243,40 @@
                                             </div>
                                         </div>
                                         <button class="btn btn-primary w-100 py-2 fw-semibold save-btn"
-                                            onclick="processOrder()">
+                                         data-bs-toggle="modal" 
+                                         data-bs-target="#saveOrderModal">
                                             <i class="fas fa-save me-2"></i>Save Order
                                         </button>
                                     </div>
                                 </footer>
                         </div>
+                        <!-- Save Order Confirmation Modal -->
+    <div class="modal fade" id="saveOrderModal" tabindex="-1" aria-labelledby="saveOrderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="saveOrderModalLabel">
+                        <i class="fas fa-save me-2"></i>Confirm Order
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+ <div class="modal-body">
+                    <p>Are you sure you want to save this order?</p>
+                    <div class="order-summary bg-light p-3 rounded mt-3">
+                        <p class="mb-1"><strong>Total Amount:</strong> ₹<span id="modalTotalAmount">0.00</span></p>
+                        <p class="mb-0"><strong>Payment Method:</strong> <span id="modalPaymentMethod">Cash</span></p>
+                         <p class="mb-0"><strong>Payment Method:</strong> <span id="modalPaymentMethod">UPI</span></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="processOrder()">
+                        <i class="fas fa-check me-2"></i>Confirm & Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
                         <!-- All your existing modals remain the same -->
                         <!-- Discount Modal -->
                         <div class="modal fade" id="discountModal" tabindex="-1" aria-labelledby="discountModalLabel"
