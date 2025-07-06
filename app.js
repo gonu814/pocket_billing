@@ -3,12 +3,12 @@ class EZOBillingApp {
   constructor() {
    
     this.menuItems = [
-      { id: 1, name: "Idli", price: 50, image: "idli.jpg", category: "South Indian" },
+      { id: 1, name: "Idli", price: 50, image: "Idli.jpeg", category: "South Indian" },
       { id: 2, name: "Dosa", price: 100, image: "Masala-Dosa.jpg", category: "South Indian" },
       { id: 3, name: "Vada", price: 50, image: "Vada.jpg", category: "South Indian" },
       { id: 4, name: "Biryani", price: 150, image: "Veg-Dum-Biryani.jpg", category: "Rice" },
-      { id: 5, name: "Noodles", price: 150, image: "https://via.placeholder.com/120x70?text=Noodles", category: "Chinese" },
-      { id: 6, name: "Pao Bhaji", price: 150, image: "https://via.placeholder.com/120x70?text=Pao+Bhaji", category: "Street Food" },
+      { id: 5, name: "Noodles", price: 150, image: "Noodles.jpg", category: "Chinese" },
+      { id: 6, name: "Pao Bhaji", price: 150, image: "PavBhaji.jpg", category: "Street Food" },
       { 
   id: 7, 
   name: "Chicken Curry", 
@@ -17,14 +17,14 @@ class EZOBillingApp {
   category: "Non-Veg",
   imageStyle: "width: 50px; height: auto; object-fit: cover; border-radius: 6px; margin: 0 auto;" 
 },
-      { id: 8, name: "Chicken Biryani", price: 250, image: "https://via.placeholder.com/120x70?text=Chicken+Biryani", category: "Non-Veg" },
-      { id: 9, name: "Veg Thali", price: 230, image: "https://via.placeholder.com/120x70?text=Veg+Thali", category: "Thali" },
-      { id: 10, name: "Samosa", price: 40, image: "https://via.placeholder.com/120x70?text=Samosa", category: "Street Food" },
-      { id: 11, name: "Chole Bhature", price: 120, image: "https://via.placeholder.com/120x70?text=Chole+Bhature", category: "Street Food" },
-      { id: 12, name: "Pav Bhaji", price: 110, image: "https://via.placeholder.com/120x70?text=Pav+Bhaji", category: "Street Food" },
-      { id: 13, name: "Masala Chai", price: 30, image: "https://via.placeholder.com/120x70?text=Masala+Chai", category: "Beverages" },
-      { id: 14, name: "Lassi", price: 60, image: "https://via.placeholder.com/120x70?text=Lassi", category: "Beverages" },
-      { id: 15, name: "Gulab Jamun", price: 80, image: "https://via.placeholder.com/120x70?text=Gulab+Jamun", category: "Desserts" }
+      { id: 8, name: "Chicken Biryani", price: 250, image: "Chicken Briyani.jpg", category: "Non-Veg" },
+      { id: 9, name: "Veg Thali", price: 230, image: "Veg-thali.jpg", category: "Thali" },
+      { id: 10, name: "Samosa", price: 40, image: "Samosa.jpg", category: "Street Food" },
+      { id: 11, name: "Chole Bhature", price: 120, image: "Chole bhatura.jpg", category: "Street Food" },
+      { id: 12, name: "Coffee", price: 110, image: "Coffee.jpeg", category: "Beverages" },
+      { id: 13, name: "Masala Chai", price: 30, image: "Masala Chai.jpg", category: "Beverages" },
+      { id: 14, name: "Lassi", price: 60, image: "Lassi.jpeg", category: "Beverages" },
+      { id: 15, name: "Gulab Jamun", price: 80, image: "gulab jamun.jpg", category: "Desserts" }
     ];
     this.cart = {}
     this.paymentMethod = "cash"
