@@ -162,7 +162,7 @@ singleAddToCart(itemId) {
       this.cart[itemId] = 0
     }
     this.cart[itemId] += quantity
-
+   
     this.renderMenuItems()
     this.updateTotal()
 
