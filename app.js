@@ -9,14 +9,7 @@ class EZOBillingApp {
       { id: 4, name: "Biryani", price: 150, image: "Veg-Dum-Biryani.jpg", category: "Rice" },
       { id: 5, name: "Noodles", price: 150, image: "Noodles.jpg", category: "Chinese" },
       { id: 6, name: "Pao Bhaji", price: 150, image: "PavBhaji.jpg", category: "Street Food" },
-      { 
-  id: 7, 
-  name: "Chicken Curry", 
-  price: 250, 
-  image: "red-chicken-curry.jpg", 
-  category: "Non-Veg",
-  imageStyle: "width: 50px; height: auto; object-fit: cover; border-radius: 6px; margin: 0 auto;" 
-},
+      { id: 7, name: "Chicken Curry", price: 250, image: "red-chicken-curry.jpg", category: "Non-Veg",},
       { id: 8, name: "Chicken Biryani", price: 250, image: "Chicken Briyani.jpg", category: "Non-Veg" },
       { id: 9, name: "Veg Thali", price: 230, image: "Veg-thali.jpg", category: "Thali" },
       { id: 10, name: "Samosa", price: 40, image: "Samosa.jpg", category: "Street Food" },

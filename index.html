@@ -133,6 +133,7 @@
                 margin-top: 0 !important;
             }
         }
+
         /* Adjust the main content margin-top for mobile to match your header height */
         @media (max-width: 768px) {
             .main-content {
@@ -192,8 +193,8 @@
                         <div class="col-12 text-center">
                             <span class="navbar-text" style="font-size: 28px;font-weight: 500;">
                                 <span sytle="font-size:24px; font-weight:500">Billing Sytem</span>
-                                <button type="button" class="btn btn-outline-secondary"
-                                    style="float: right; background-color:darkgreen" fdprocessedid="06p0t8">
+                                  <button type="button" class="btn btn-outline-secondary"
+                                    style="float: right; background-color:rgb(250, 252, 250)" fdprocessedid="06p0t8">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="light color"
                                         class="bi bi-cart" viewBox="0 0 16 16">
                                         <path
@@ -206,8 +207,8 @@
                         </div>
                         <div class="col-12">
                             <form class="d-flex">
-                                <input type="text" class="search" name="search" placeholder="Search.."">
-</form>
+                                <input type="text" class="search" id="menuSearch" name="search" placeholder="Search menu items...">
+                                </form>
                         </div>
                     </div>
                 </div>
@@ -243,67 +244,72 @@
                                             </div>
                                         </div>
                                         <button class="btn btn-primary w-100 py-2 fw-semibold save-btn"
-                                         data-bs-toggle="modal" 
-                                         data-bs-target="#saveOrderModal">
+                                            data-bs-toggle="modal" data-bs-target="#saveOrderModal">
                                             <i class="fas fa-save me-2"></i>Save Order
                                         </button>
                                     </div>
                                 </footer>
                         </div>
                         <!-- Save Order Confirmation Modal -->
-    <div class="modal fade" id="saveOrderModal" tabindex="-1" aria-labelledby="saveOrderModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="saveOrderModalLabel">
-                    <i class="fas fa-save me-2"></i>Confirm Order
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="order-items mb-3" id="orderItemsList">
-                    <!-- Order items will be dynamically inserted here -->
-                </div>
-                
-                <div class="discount-option mb-3">
-                    <label class="form-label"><strong>Apply Discount</strong></label>
-                    <div class="input-group mb-2">
-                        <select class="form-select" id="discountType" style="max-width: 120px;">
-                            <option value="fixed">₹ Fixed</option>
-                            <option value="percentage">% Percentage</option>
-                        </select>
-                        <input type="number" class="form-control" id="discountValue" placeholder="Discount value" min="0" step="0.01">
-                        <button class="btn btn-outline-secondary" type="button" onclick="applyDiscount()">Apply</button>
-                    </div>
-                </div>
-                
-                <div class="order-summary bg-light p-3 rounded">
-                    <div class="d-flex justify-content-between mb-1">
-                        <span><strong>Subtotal:</strong></span>
-                        <span>₹<span id="modalSubtotal">0.00</span></span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-1">
-                        <span><strong>Discount:</strong></span>
-                        <span>-₹<span id="modalDiscount">0.00</span></span>
-                    </div>
-                    <div class="d-flex justify-content-between fw-bold">
-                        <span><strong>Total Amount:</strong></span>
-                        <span>₹<span id="modalTotalAmount">0.00</span></span>
-                    </div>
-                    <div class="mt-2">
-                        <span><strong>Payment Method:</strong> <span id="modalPaymentMethod">Cash</span></span>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="processOrder()">
-                    <i class="fas fa-check me-2"></i>Confirm & Save
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
+                        <div class="modal fade" id="saveOrderModal" tabindex="-1" aria-labelledby="saveOrderModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="saveOrderModalLabel">
+                                            <i class="fas fa-save me-2"></i>Confirm Order
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="order-items mb-3" id="orderItemsList">
+                                            <!-- Order items will be dynamically inserted here -->
+                                        </div>
+
+                                        <div class="discount-option mb-3">
+                                            <label class="form-label"><strong>Apply Discount</strong></label>
+                                            <div class="input-group mb-2">
+                                                <select class="form-select" id="discountType" style="max-width: 120px;">
+                                                    <option value="fixed">₹ Fixed</option>
+                                                    <option value="percentage">% Percentage</option>
+                                                </select>
+                                                <input type="number" class="form-control" id="discountValue"
+                                                    placeholder="Discount value" min="0" step="0.01">
+                                                <button class="btn btn-outline-secondary" type="button"
+                                                    onclick="applyDiscount()">Apply</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="order-summary bg-light p-3 rounded">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span><strong>Subtotal:</strong></span>
+                                                <span>₹<span id="modalSubtotal">0.00</span></span>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span><strong>Discount:</strong></span>
+                                                <span>-₹<span id="modalDiscount">0.00</span></span>
+                                            </div>
+                                            <div class="d-flex justify-content-between fw-bold">
+                                                <span><strong>Total Amount:</strong></span>
+                                                <span>₹<span id="modalTotalAmount">0.00</span></span>
+                                            </div>
+                                            <div class="mt-2">
+                                                <span><strong>Payment Method:</strong> <span
+                                                        id="modalPaymentMethod">Cash</span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-primary" onclick="processOrder()">
+                                            <i class="fas fa-check me-2"></i>Confirm & Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- All your existing modals remain the same -->
                         <!-- Discount Modal -->
                         <div class="modal fade" id="discountModal" tabindex="-1" aria-labelledby="discountModalLabel"
@@ -410,51 +416,54 @@
                         <script
                             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
                         <script src="app.js"></script>
-                          <script>
-        // Initialize modal when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // When save order modal is about to be shown, update the order summary
-            document.getElementById('saveOrderModal').addEventListener('show.bs.modal', function() {
-                // Update the modal with current order details
-                document.getElementById('modalTotalAmount').textContent = 
-                    document.getElementById('totalDisplay').textContent || '0.00';
-                
-                // Get current payment method (assuming you have this functionality)
-                const paymentMethod = document.querySelector('.payment-btn.active').dataset.method;
-                document.getElementById('modalPaymentMethod').textContent = 
-                    paymentMethod === 'cash' ? 'Cash' : 'UPI';
-            });
-        });
+                        <script>
+                            // Initialize modal when DOM is loaded
+                            document.addEventListener('DOMContentLoaded', function () {
+                                
+                                
+                                // When save order modal is about to be shown, update the order summary
+                                document.getElementById('saveOrderModal').addEventListener('show.bs.modal', function () {
+                                    // Update the modal with current order details
+                                    
+                                    document.getElementById('modalTotalAmount').textContent =
+                                        document.getElementById('totalDisplay').textContent || '0.00';
 
-        // Payment method selection
-        function selectPaymentMethod(method) {
-            currentPaymentMethod = method;
-            document.querySelectorAll('.payment-btn').forEach(btn => {
-                if (btn.dataset.method === method) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-        }
-// Global variables
-    let orderItems = [];
-    let currentDiscount = { type: 'fixed', value: 0 };
-    let currentPaymentMethod = 'Cash';
+                                    // Get current payment method (assuming you have this functionality)
+                                    const paymentMethod = document.querySelector('.payment-btn.active').dataset.method;
+                                    document.getElementById('modalPaymentMethod').textContent =
+                                        paymentMethod === 'cash' ? 'Cash' : 'UPI';
+                                });
+                            });
 
-    // Function to update the order items in the modal
-    function updateOrderModal() {
-        const orderItemsList = document.getElementById('orderItemsList');
-        orderItemsList.innerHTML = '';
-        
-        let subtotal = 0;
-        
-        orderItems.forEach((item, index) => {
-            subtotal += item.price * item.quantity;
-            
-            const itemElement = document.createElement('div');
-            itemElement.className = 'order-item d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom';
-            itemElement.innerHTML = `
+                            // Payment method selection
+                            function selectPaymentMethod(method) {
+                                currentPaymentMethod = method;
+                                document.querySelectorAll('.payment-btn').forEach(btn => {
+                                    if (btn.dataset.method === method) {
+                                        btn.classList.add('active');
+                                    } else {
+                                        btn.classList.remove('active');
+                                    }
+                                });
+                            }
+                            // Global variables
+                            let orderItems = [];
+                            let currentDiscount = { type: 'fixed', value: 0 };
+                            let currentPaymentMethod = 'Cash';
+
+                            // Function to update the order items in the modal
+                            function updateOrderModal() {
+                                const orderItemsList = document.getElementById('orderItemsList');
+                                orderItemsList.innerHTML = '';
+
+                                let subtotal = 0;
+
+                                orderItems.forEach((item, index) => {
+                                    subtotal += item.price * item.quantity;
+
+                                    const itemElement = document.createElement('div');
+                                    itemElement.className = 'order-item d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom';
+                                    itemElement.innerHTML = `
                 <div>
                     <h6 class="mb-1">${item.name}</h6>
                     <small class="text-muted">₹${item.price.toFixed(2)} each</small>
@@ -470,114 +479,135 @@
                     <span class="ms-3 fw-bold">₹${(item.price * item.quantity).toFixed(2)}</span>
                 </div>
             `;
-            orderItemsList.appendChild(itemElement);
+                                    orderItemsList.appendChild(itemElement);
+                                });
+
+                                // Calculate totals
+                                document.getElementById('modalSubtotal').textContent = subtotal.toFixed(2);
+
+                                let discountAmount = 0;
+                                if (currentDiscount.type === 'percentage') {
+                                    discountAmount = subtotal * (currentDiscount.value / 100);
+                                } else {
+                                    discountAmount = currentDiscount.value;
+                                }
+
+                                // Ensure discount doesn't exceed subtotal
+                                discountAmount = Math.min(discountAmount, subtotal);
+
+                                document.getElementById('modalDiscount').textContent = discountAmount.toFixed(2);
+                                document.getElementById('modalTotalAmount').textContent = (subtotal - discountAmount).toFixed(2);
+                            }
+
+                            // Function to update item quantity
+                            function updateQuantity(index, change) {
+                                const newQuantity = orderItems[index].quantity + change;
+                                if (newQuantity > 0) {
+                                    orderItems[index].quantity = newQuantity;
+                                    updateOrderModal();
+                                } else if (newQuantity === 0) {
+                                    // Remove item if quantity reaches 0
+                                    orderItems.splice(index, 1);
+                                    updateOrderModal();
+                                }
+                            }
+
+                            // Function to apply discount
+                            function applyDiscount() {
+                                const discountType = document.getElementById('discountType').value;
+                                const discountValue = parseFloat(document.getElementById('discountValue').value) || 0;
+
+                                currentDiscount = {
+                                    type: discountType,
+                                    value: discountValue
+                                };
+
+                                updateOrderModal();
+                            }
+
+                            // Function to process the order
+                            function processOrder() {
+                                const totalAmount = parseFloat(document.getElementById('modalTotalAmount').textContent);
+
+                                // Here you would typically send the order to your backend
+                                console.log('Order processed:', {
+                                    items: orderItems,
+                                    subtotal: parseFloat(document.getElementById('modalSubtotal').textContent),
+                                    discount: parseFloat(document.getElementById('modalDiscount').textContent),
+                                    total: totalAmount,
+                                    paymentMethod: currentPaymentMethod
+                                });
+
+                                // Close the modal
+                                const modal = bootstrap.Modal.getInstance(document.getElementById('saveOrderModal'));
+                                modal.hide();
+
+                                // Show success message (you could use a toast or another modal)
+                                alert(`Order for ₹${totalAmount.toFixed(2)} saved successfully!`);
+
+                                // Reset the order (optional)
+                                orderItems = [];
+                                currentDiscount = { type: 'fixed', value: 0 };
+                                updateOrderModal();
+                            }
+
+                            // Initialize when modal is shown
+                            document.getElementById('saveOrderModal').addEventListener('show.bs.modal', function () {
+                                updateOrderModal();
+                            });
+
+                            // Sample function to add items to the order (call this when items are selected)
+                            function addToOrder(item) {
+                                const existingItem = orderItems.find(i => i.id === item.id);
+                                if (existingItem) {
+                                    existingItem.quantity += 1;
+                                } else {
+                                    orderItems.push({
+                                        id: item.id,
+                                        name: item.name,
+                                        price: item.price,
+                                        quantity: 1
+                                    });
+                                }
+                                updateOrderModal();
+                            }
+                            // Process order function (called from confirmation modal)
+                            function processOrder() {
+                                // Here you would typically process the order
+                                console.log('Order processed with:');
+                                console.log('Amount:', document.getElementById('modalTotalAmount').textContent);
+                                console.log('Payment Method:', document.getElementById('modalPaymentMethod').textContent);
+
+                                // Close the save order modal
+                                const saveOrderModal = bootstrap.Modal.getInstance(document.getElementById('saveOrderModal'));
+                                saveOrderModal.hide();
+
+                                // Show success modal (or you could submit to server first)
+                                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                                successModal.show();
+
+                            }
+                           document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('menuSearch');
+    
+    // Assuming you have menu items with a class 'menu-item' and their text is searchable
+    const menuItems = document.querySelectorAll('.menu-item'); // Adjust selector as needed
+    
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        
+        menuItems.forEach(item => {
+            const itemText = item.textContent.toLowerCase();
+            if (itemText.includes(searchTerm)) {
+                item.style.display = ''; // Show matching items
+            } else {
+                item.style.display = 'none'; // Hide non-matching items
+            }
         });
-        
-        // Calculate totals
-        document.getElementById('modalSubtotal').textContent = subtotal.toFixed(2);
-        
-        let discountAmount = 0;
-        if (currentDiscount.type === 'percentage') {
-            discountAmount = subtotal * (currentDiscount.value / 100);
-        } else {
-            discountAmount = currentDiscount.value;
-        }
-        
-        // Ensure discount doesn't exceed subtotal
-        discountAmount = Math.min(discountAmount, subtotal);
-        
-        document.getElementById('modalDiscount').textContent = discountAmount.toFixed(2);
-        document.getElementById('modalTotalAmount').textContent = (subtotal - discountAmount).toFixed(2);
-    }
-
-    // Function to update item quantity
-    function updateQuantity(index, change) {
-        const newQuantity = orderItems[index].quantity + change;
-        if (newQuantity > 0) {
-            orderItems[index].quantity = newQuantity;
-            updateOrderModal();
-        } else if (newQuantity === 0) {
-            // Remove item if quantity reaches 0
-            orderItems.splice(index, 1);
-            updateOrderModal();
-        }
-    }
-
-    // Function to apply discount
-    function applyDiscount() {
-        const discountType = document.getElementById('discountType').value;
-        const discountValue = parseFloat(document.getElementById('discountValue').value) || 0;
-        
-        currentDiscount = {
-            type: discountType,
-            value: discountValue
-        };
-        
-        updateOrderModal();
-    }
-
-    // Function to process the order
-    function processOrder() {
-        const totalAmount = parseFloat(document.getElementById('modalTotalAmount').textContent);
-        
-        // Here you would typically send the order to your backend
-        console.log('Order processed:', {
-            items: orderItems,
-            subtotal: parseFloat(document.getElementById('modalSubtotal').textContent),
-            discount: parseFloat(document.getElementById('modalDiscount').textContent),
-            total: totalAmount,
-            paymentMethod: currentPaymentMethod
-        });
-        
-        // Close the modal
-        const modal = bootstrap.Modal.getInstance(document.getElementById('saveOrderModal'));
-        modal.hide();
-        
-        // Show success message (you could use a toast or another modal)
-        alert(`Order for ₹${totalAmount.toFixed(2)} saved successfully!`);
-        
-        // Reset the order (optional)
-        orderItems = [];
-        currentDiscount = { type: 'fixed', value: 0 };
-        updateOrderModal();
-    }
-
-    // Initialize when modal is shown
-    document.getElementById('saveOrderModal').addEventListener('show.bs.modal', function() {
-        updateOrderModal();
     });
-
-    // Sample function to add items to the order (call this when items are selected)
-    function addToOrder(item) {
-        const existingItem = orderItems.find(i => i.id === item.id);
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            orderItems.push({
-                id: item.id,
-                name: item.name,
-                price: item.price,
-                quantity: 1
-            });
-        }
-        updateOrderModal();
-    }
-        // Process order function (called from confirmation modal)
-        function processOrder() {
-            // Here you would typically process the order
-            console.log('Order processed with:');
-            console.log('Amount:', document.getElementById('modalTotalAmount').textContent);
-            console.log('Payment Method:', document.getElementById('modalPaymentMethod').textContent);
-            
-            // Close the save order modal
-            const saveOrderModal = bootstrap.Modal.getInstance(document.getElementById('saveOrderModal'));
-            saveOrderModal.hide();
-            
-            // Show success modal (or you could submit to server first)
-            const successModal = new bootstrap.Modal(document.getElementById('successModal'));
-            successModal.show();
-
-        }
-    </script>
+});
+</script>
+                        </script>
 </body>
+
 </html>
