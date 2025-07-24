@@ -68,7 +68,7 @@ renderMenuItems() {
     const itemElement = document.createElement("div");
     itemElement.className = "col-4 mb-3";
 
-    // Default image style
+    // Default image style with pointer-events: none to prevent clicking
     const defaultStyle = 'width: 100%; height: 70px; object-fit: cover; border-radius: 6px;';
     
     itemElement.innerHTML = `
@@ -105,7 +105,7 @@ renderMenuItems() {
 
       if (timeDiff < 300 && timeDiff > 0) {
         touchCount++
-        if (touchCount === 2) {
+        if (touchCount === 1) {
           // Double tap detected
           this.handleDoubleTap(element, itemId)
           touchCount = 0
@@ -154,7 +154,7 @@ singleAddToCart(itemId) {
   }
 
   const item = this.getItemById(itemId);
-  console.log(`Double tap: Added 2x ${item.name}`);
+  console.log(`Double tap: Added 1x ${item.name}`);
 }
 
   addToCart(itemId, quantity = 1) {

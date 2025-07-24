@@ -111,16 +111,17 @@
                 padding: 4px 8px;
             }
 
-            .payment-btn.active {
-                background-color: #0d6efd;
-                color: white;
-                border-color: #0d6efd;
-            }
-
             /* Save button */
             .save-btn {
                 font-size: 16px;
                 font-weight: 600;
+            }
+
+            /* General styles */
+            .payment-btn.active {
+                background-color: #0d6efd;
+                color: white;
+                border-color: #0d6efd;
             }
 
             /* Menu section styling */
@@ -180,6 +181,31 @@
                 max-width: calc(100% - 20px);
             }
         }
+
+        /* Disable pointer events on all images within menu items */
+        #menuGrid img {
+            pointer-events: none;
+            cursor: default;
+        }
+
+        /* Optional: If you want to visually indicate the images are not clickable */
+        #menuGrid img {
+            opacity: 0.9;
+            filter: grayscale(20%);
+        }
+
+        .search-box {
+            width: 100%;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            padding: 12px 20px;
+        }
+
+        .order-item {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
     </style>
 </head>
 
@@ -189,425 +215,633 @@
         <header class="app-header">
             <div class="container-fluid">
                 <div class="row align-items-center py-3" style="background: #0d6efd;">
-                   
-                        <div class="col-12 text-center">
-                            <span class="navbar-text" style="font-size: 28px;font-weight: 500;">
-                                <span sytle="font-size:24px; font-weight:500">Billing Sytem</span>
-                                  <button type="button" class="btn btn-outline-secondary"
-                                    style="float: right; background-color:rgb(250, 252, 250)" fdprocessedid="06p0t8">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="light color"
-                                        class="bi bi-cart" viewBox="0 0 16 16">
-                                        <path
-                                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2">
-                                        </path>
-                                    </svg>
-                                    <span class="visually-hidden">Button</span>
-                                </button>
-                            </span>
-                        </div>
-                        <div class="col-12">
-                            <form class="d-flex">
-                                <input type="text" class="search" id="menuSearch" name="search" placeholder="Search menu items...">
-                                </form>
-                        </div>
-                    
+                    <div class="col-12 text-center">
+                        <span class="navbar-text" style="font-size: 28px;font-weight: 500;">
+                            <span sytle="font-size:24px; font-weight:500">Billing Sytem</span>
+                            <button type="button" class="btn btn-outline-secondary"
+                                style="float: right; background-color:rgb(250, 252, 250)" fdprocessedid="06p0t8">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="light color"
+                                    class="bi bi-cart" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2">
+                                    </path>
+                                </svg>
+                                <span class="visually-hidden">Button</span>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <form class="d-flex">
+                            <input type="text" class="search" id="menuSearch" name="search"
+                                placeholder="Search menu items...">
+                        </form>
+                    </div>
+
                 </div>
-            </div>   
-        </div>           
+            </div>
+    </div>
     </header>
     <!-- Main Content -->
     <main class=" main-content">
-                                <div class="container-fluid px-10">
-                                    <!-- Best Seller Section -->
-                                    <section class="menu-section">
-                                        <h6 class="section-title mb-3 fw-bold text-muted">Best Seller Items</h6>
-                                        <div class="row g-2" id="menuGrid">
-                                            <!-- Menu items will be dynamically loaded here -->
-                                        </div>
-                                    </section>
-                                </div>
-                                </main>
-
-                                <!-- Fixed Bottom Footer (Mobile Only) -->
-                                <footer class="bottom-section">
-                                    <div class="payment-summary px-3 py-2">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <span class="text-muted">Received - ₹<span
-                                                    id="totalDisplay">00</span></span>
-                                            <div class="payment-methods">
-                                                <button class="btn btn-sm btn-outline-secondary me-1 payment-btn"
-                                                    data-method="cash"
-                                                    onclick="selectPaymentMethod('cash')">Cash</button>
-                                                <button class="btn btn-sm btn-outline-secondary payment-btn active"
-                                                    data-method="cheque"
-                                                    onclick="selectPaymentMethod('cheque')">UPI</button>
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-primary w-100 py-2 fw-semibold save-btn"
-                                            data-bs-toggle="modal" data-bs-target="#saveOrderModal">
-                                            <i class="fas fa-save me-2"></i>Save Order
-                                        </button>
-                                    </div>
-                                </footer>
-                        </div>
-                        <!-- Save Order Confirmation Modal -->
-                        <div class="modal fade" id="saveOrderModal" tabindex="-1" aria-labelledby="saveOrderModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="saveOrderModalLabel">
-                                            <i class="fas fa-save me-2"></i>Confirm Order
-                                        </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="order-items mb-3" id="orderItemsList">
-                                            <!-- Order items will be dynamically inserted here -->
-                                        </div>
-
-                                        <div class="discount-option mb-3">
-                                            <label class="form-label"><strong>Apply Discount</strong></label>
-                                            <div class="input-group mb-2">
-                                                <select class="form-select" id="discountType" style="max-width: 120px;">
-                                                    <option value="fixed">₹ Fixed</option>
-                                                    <option value="percentage">% Percentage</option>
-                                                </select>
-                                                <input type="number" class="form-control" id="discountValue"
-                                                    placeholder="Discount value" min="0" step="0.01">
-                                                <button class="btn btn-outline-secondary" type="button"
-                                                    onclick="applyDiscount()">Apply</button>
-                                            </div>
-                                        </div>
-
-                                        <div class="order-summary bg-light p-3 rounded">
-                                            <div class="d-flex justify-content-between mb-1">
-                                                <span><strong>Subtotal:</strong></span>
-                                                <span>₹<span id="modalSubtotal">0.00</span></span>
-                                            </div>
-                                            <div class="d-flex justify-content-between mb-1">
-                                                <span><strong>Discount:</strong></span>
-                                                <span>-₹<span id="modalDiscount">0.00</span></span>
-                                            </div>
-                                            <div class="d-flex justify-content-between fw-bold">
-                                                <span><strong>Total Amount:</strong></span>
-                                                <span>₹<span id="modalTotalAmount">0.00</span></span>
-                                            </div>
-                                            <div class="mt-2">
-                                                <span><strong>Payment Method:</strong> <span
-                                                        id="modalPaymentMethod">Cash</span></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Cancel</button>
-                                        <button type="button" class="btn btn-primary" onclick="processOrder()">
-                                            <i class="fas fa-check me-2"></i>Confirm & Save
-                                        </button>
-                                    </div>
+        <div class="container-fluid px-10">
+            <!-- Best Seller Section -->
+            <section class="menu-section">
+                <h6 class="section-title mb-3 fw-bold text-muted">Best Seller Items</h6>
+                <div class="row g-2" id="menuGrid">
+                    <div class="col-4 mb-3">
+                        <div class="menu-item" data-item-id="1">
+                            <div class="image-container" style="display: flex; justify-content: center;">
+                                <img src="Idli.jpeg" alt="Idli"
+                                    style="width: 100%; height: 70px; object-fit: cover; border-radius: 6px;" alt="Idli"
+                                    class="unclickable" />
+                            </div>
+                            <div class="item-name">Idli</div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="item-price">₹50</span>
+                                <div class="quantity-container">
+                                    <button class="add-btn" onclick="app.singleAddToCart(1, event)">+</button>
                                 </div>
                             </div>
                         </div>
-                        <!-- All your existing modals remain the same -->
-                        <!-- Discount Modal -->
-                        <div class="modal fade" id="discountModal" tabindex="-1" aria-labelledby="discountModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="discountModalLabel">
-                                            <i class="fas fa-percent me-2"></i>Apply Discount
-                                        </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form id="discountForm">
-                                            <div class="mb-3">
-                                                <label for="discountType" class="form-label">Discount Type</label>
-                                                <select class="form-select" id="discountType"
-                                                    onchange="updateDiscountPlaceholder()">
-                                                    <option value="percentage">Percentage (%)</option>
-                                                    <option value="fixed">Fixed Amount (₹)</option>
-                                                </select>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="discountValue" class="form-label">Discount Value</label>
-                                                <input type="number" class="form-control" id="discountValue"
-                                                    placeholder="Enter discount percentage" min="0" step="0.01">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="discountReason" class="form-label">Reason (Optional)</label>
-                                                <input type="text" class="form-control" id="discountReason"
-                                                    placeholder="e.g., Customer loyalty, Special offer">
-                                            </div>
-                                            <div class="discount-preview p-2 bg-light rounded" id="discountPreview"
-                                                style="display: none;">
-                                                <small class="text-muted">Preview:</small>
-                                                <div id="discountPreviewText"></div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Cancel</button>
-                                        <button type="button" class="btn btn-success" onclick="applyDiscount()">
-                                            <i class="fas fa-check me-2"></i>Apply Discount
-                                        </button>
-                                    </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="menu-item" data-item-id="2">
+                            <div class="image-container" style="display: flex; justify-content: center;">
+                                <img src="Masala-Dosa.jpg" alt="Dosa"
+                                    style="width: 100%; height: 70px; object-fit: cover; border-radius: 6px;"
+                                    class="item-image" loading="lazy">
+                            </div>
+                            <div class="item-name">Dosa</div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="item-price">₹100</span>
+                                <div class="quantity-container">
+                                    <button class="add-btn" onclick="app.singleAddToCart(2, event)">+</button>
+                                    <span class="quantity-badge">2</span>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="menu-item" data-item-id="3">
+                            <div class="image-container" style="display: flex; justify-content: center;">
+                                <img src="Vada.jpg" alt="Vada"
+                                    style="width: 100%; height: 70px; object-fit: cover; border-radius: 6px;"
+                                    class="item-image " loading="lazy">
+                            </div>
+                            <div class="item-name">Vada</div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="item-price">₹50</span>
+                                <div class="quantity-container">
+                                    <button class="add-btn" onclick="app.singleAddToCart(3, event)">+</button>
 
-                        <!-- Bill Preview Modal -->
-                        <div class="modal fade" id="billModal" tabindex="-1" aria-labelledby="billModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="billModalLabel">
-                                            <i class="fas fa-receipt me-2"></i>Order Bill
-                                        </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div id="billContent" class="bill-container">
-                                            <!-- Bill content will be generated here -->
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="printBill()">
-                                            <i class="fas fa-print me-2"></i>Print Bill
-                                        </button>
-                                        <button type="button" class="btn btn-success" onclick="completeBilling()">
-                                            <i class="fas fa-check-circle me-2"></i>Complete Order
-                                        </button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="menu-item" data-item-id="4">
+                            <div class="image-container" style="display: flex; justify-content: center;">
+                                <img src="Veg-Dum-Biryani.jpg" alt="Biryani"
+                                    style="width: 100%; height: 70px; object-fit: cover; border-radius: 6px;"
+                                    class="item-image " loading="lazy">
+                            </div>
+                            <div class="item-name">Biryani</div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="item-price">₹150</span>
+                                <div class="quantity-container">
+                                    <button class="add-btn" onclick="app.singleAddToCart(4, event)">+</button>
 
-                        <!-- Success Modal -->
-                        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-body text-center py-4">
-                                        <div class="success-icon mb-3">
-                                            <i class="fas fa-check-circle text-success" style="font-size: 3rem;"></i>
-                                        </div>
-                                        <h5 class="mb-2">Order Completed Successfully!</h5>
-                                        <p class="text-muted mb-3">Your order has been processed and saved.</p>
-                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                            onclick="resetApp()">
-                                            Start New Order
-                                        </button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="menu-item" data-item-id="5">
+                            <div class="image-container" style="display: flex; justify-content: center;">
+                                <img src="Noodles.jpg" alt="Noodles"
+                                    style="width: 100%; height: 70px; object-fit: cover; border-radius: 6px;"
+                                    class="item-image " loading="lazy">
+                            </div>
+                            <div class="item-name">Noodles</div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="item-price">₹150</span>
+                                <div class="quantity-container">
+                                    <button class="add-btn" onclick="app.singleAddToCart(5, event)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="menu-item" data-item-id="6">
+                            <div class="image-container" style="display: flex; justify-content: center;">
+                                <img src="PavBhaji.jpg" alt="Pao Bhaji"
+                                    style="width: 100%; height: 70px; object-fit: cover; border-radius: 6px;"
+                                    class="item-image " loading="lazy">
+                            </div>
+                            <div class="item-name">Pao Bhaji</div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="item-price">₹150</span>
+                                <div class="quantity-container">
+                                    <button class="add-btn" onclick="app.singleAddToCart(6, event)">+</button>
 
-                        <!-- Scripts -->
-                        <script
-                            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-                        <script src="app.js"></script>
-                        <script>
-                            // Initialize modal when DOM is loaded
-                            document.addEventListener('DOMContentLoaded', function () {
-                                
-                                
-                                // When save order modal is about to be shown, update the order summary
-                                document.getElementById('saveOrderModal').addEventListener('show.bs.modal', function () {
-                                    // Update the modal with current order details
-                                    
-                                    document.getElementById('modalTotalAmount').textContent =
-                                        document.getElementById('totalDisplay').textContent || '0.00';
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="menu-item" data-item-id="7">
+                            <div class="image-container" style="display: flex; justify-content: center;">
+                                <img src="red-chicken-curry.jpg" alt="Chicken Curry"
+                                    style="width: 100%; height: 70px; object-fit: cover; border-radius: 6px;"
+                                    class="item-image " loading="lazy">
+                            </div>
+                            <div class="item-name">Chicken Curry</div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="item-price">₹250</span>
+                                <div class="quantity-container">
+                                    <button class="add-btn" onclick="app.singleAddToCart(7, event)">+</button>
 
-                                    // Get current payment method (assuming you have this functionality)
-                                    const paymentMethod = document.querySelector('.payment-btn.active').dataset.method;
-                                    document.getElementById('modalPaymentMethod').textContent =
-                                        paymentMethod === 'cash' ? 'Cash' : 'UPI';
-                                });
-                            });
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="menu-item" data-item-id="8">
+                            <div class="image-container" style="display: flex; justify-content: center;">
+                                <img src="Chicken Briyani.jpg" alt="Chicken Biryani"
+                                    style="width: 100%; height: 70px; object-fit: cover; border-radius: 6px;"
+                                    class="item-image " loading="lazy">
+                            </div>
+                            <div class="item-name">Chicken Biryani</div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="item-price">₹250</span>
+                                <div class="quantity-container">
+                                    <button class="add-btn" onclick="app.singleAddToCart(8, event)">+</button>
 
-                            // Payment method selection
-                            function selectPaymentMethod(method) {
-                                currentPaymentMethod = method;
-                                document.querySelectorAll('.payment-btn').forEach(btn => {
-                                    if (btn.dataset.method === method) {
-                                        btn.classList.add('active');
-                                    } else {
-                                        btn.classList.remove('active');
-                                    }
-                                });
-                            }
-                            // Global variables
-                            let orderItems = [];
-                            let currentDiscount = { type: 'fixed', value: 0 };
-                            let currentPaymentMethod = 'Cash';
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="menu-item" data-item-id="9">
+                            <div class="image-container" style="display: flex; justify-content: center;">
+                                <img src="Veg-thali.jpg" alt="Veg Thali"
+                                    style="width: 100%; height: 70px; object-fit: cover; border-radius: 6px;"
+                                    class="item-image " loading="lazy">
+                            </div>
+                            <div class="item-name">Veg Thali</div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="item-price">₹230</span>
+                                <div class="quantity-container">
+                                    <button class="add-btn" onclick="app.singleAddToCart(9, event)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="menu-item" data-item-id="10">
+                            <div class="image-container" style="display: flex; justify-content: center;">
+                                <img src="Samosa.jpg" alt="Samosa"
+                                    style="width: 100%; height: 70px; object-fit: cover; border-radius: 6px;"
+                                    class="item-image " loading="lazy">
+                            </div>
+                            <div class="item-name">Samosa</div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="item-price">₹40</span>
+                                <div class="quantity-container">
+                                    <button class="add-btn" onclick="app.singleAddToCart(10, event)">+</button>
 
-                            // Function to update the order items in the modal
-                            function updateOrderModal() {
-                                const orderItemsList = document.getElementById('orderItemsList');
-                                orderItemsList.innerHTML = '';
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="menu-item" data-item-id="11">
+                            <div class="image-container" style="display: flex; justify-content: center;">
+                                <img src="Chole bhatura.jpg" alt="Chole Bhature"
+                                    style="width: 100%; height: 70px; object-fit: cover; border-radius: 6px;"
+                                    class="item-image " loading="lazy">
+                            </div>
+                            <div class="item-name">Chole Bhature</div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="item-price">₹120</span>
+                                <div class="quantity-container">
+                                    <button class="add-btn" onclick="app.singleAddToCart(11, event)">+</button>
 
-                                let subtotal = 0;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="menu-item" data-item-id="12">
+                            <div class="image-container" style="display: flex; justify-content: center;">
+                                <img src="Coffee.jpeg" alt="Coffee"
+                                    style="width: 100%; height: 70px; object-fit: cover; border-radius: 6px;"
+                                    class="item-image " loading="lazy">
+                            </div>
+                            <div class="item-name">Coffee</div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="item-price">₹110</span>
+                                <div class="quantity-container">
+                                    <button class="add-btn" onclick="app.singleAddToCart(12, event)">+</button>
 
-                                orderItems.forEach((item, index) => {
-                                    subtotal += item.price * item.quantity;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="menu-item" data-item-id="13">
+                            <div class="image-container" style="display: flex; justify-content: center;">
+                                <img src="Masala Chai.jpg" alt="Masala Chai"
+                                    style="width: 100%; height: 70px; object-fit: cover; border-radius: 6px;"
+                                    class="item-image " loading="lazy">
+                            </div>
+                            <div class="item-name">Masala Chai</div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="item-price">₹30</span>
+                                <div class="quantity-container">
+                                    <button class="add-btn" onclick="app.singleAddToCart(13, event)">+</button>
 
-                                    const itemElement = document.createElement('div');
-                                    itemElement.className = 'order-item d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom';
-                                    itemElement.innerHTML = `
-                <div>
-                    <h6 class="mb-1">${item.name}</h6>
-                    <small class="text-muted">₹${item.price.toFixed(2)} each</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="menu-item" data-item-id="14">
+                            <div class="image-container" style="display: flex; justify-content: center;">
+                                <img src="Lassi.jpeg" alt="Lassi"
+                                    style="width: 100%; height: 70px; object-fit: cover; border-radius: 6px;"
+                                    class="item-image " loading="lazy">
+                            </div>
+                            <div class="item-name">Lassi</div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="item-price">₹60</span>
+                                <div class="quantity-container">
+                                    <button class="add-btn" onclick="app.singleAddToCart(14, event)">+</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="menu-item" data-item-id="15">
+                            <div class="image-container" style="display: flex; justify-content: center;">
+                                <img src="gulab jamun.jpg" alt="Gulab Jamun"
+                                    style="width: 100%; height: 70px; object-fit: cover; border-radius: 6px;"
+                                    class="item-image " loading="lazy">
+                            </div>
+                            <div class="item-name">Gulab Jamun</div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="item-price">₹80</span>
+                                <div class="quantity-container">
+                                    <button class="add-btn" onclick="app.singleAddToCart(15, event)">+</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="d-flex align-items-center">
-                    <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, -1)">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <span class="mx-2">${item.quantity}</span>
-                    <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, 1)">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <span class="ms-3 fw-bold">₹${(item.price * item.quantity).toFixed(2)}</span>
+        </div>
+        </section>
+        </div>
+    </main>
+
+    <!-- Fixed Bottom Footer (Mobile Only) -->
+    <footer class="bottom-section">
+        <div class="payment-summary px-3 py-2">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-muted">Received - ₹<span id="totalDisplay">00</span></span>
+                <div class="payment-methods">
+                    <button class="btn btn-sm btn-outline-secondary me-1 payment-btn" data-method="cash"
+                        onclick="selectPaymentMethod('cash')">Cash</button>
+                    <button class="btn btn-sm btn-outline-secondary payment-btn active" data-method="cheque"
+                        onclick="selectPaymentMethod('cheque')">UPI</button>
                 </div>
-            `;
-                                    orderItemsList.appendChild(itemElement);
-                                });
+            </div>
+            <button class="btn btn-primary w-100 py-2 fw-semibold save-btn" data-bs-toggle="modal"
+                data-bs-target="#saveOrderModal">
+                <i class="fas fa-save me-2"></i>Save Order
+            </button>
+        </div>
+    </footer>
+    </div>
+     <!-- Order Preview Modal -->
+    <div class="modal fade" id="saveOrderModal" tabindex="-1" aria-labelledby="saveOrderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="saveOrderModalLabel">
+                        <i class="fas fa-receipt me-2"></i>Order Bill Preview
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="order-items mb-3" id="orderItemsList">
 
-                                // Calculate totals
-                                document.getElementById('modalSubtotal').textContent = subtotal.toFixed(2);
+    <!-- Order items will be inserted here -->
+                    </div>
 
-                                let discountAmount = 0;
-                                if (currentDiscount.type === 'percentage') {
-                                    discountAmount = subtotal * (currentDiscount.value / 100);
-                                } else {
-                                    discountAmount = currentDiscount.value;
-                                }
+                    <div class="discount-option mb-3">
+                        <label class="form-label"><strong>Apply Discount</strong></label>
+                        <div class="input-group mb-2">
+                            <select class="form-select" id="discountType" style="max-width: 120px;">
+                                <option value="fixed">₹ Fixed</option>
+                                <option value="percentage">% Percentage</option>
+                            </select>
+                            <input type="number" class="form-control" id="discountValue" placeholder="Value" min="0" step="0.01">
+                            <button class="btn btn-outline-secondary" type="button" onclick="applyDiscount()">Apply</button>
+                        </div>
+                    </div>
 
-                                // Ensure discount doesn't exceed subtotal
-                                discountAmount = Math.min(discountAmount, subtotal);
+                    <div class="order-summary bg-light p-3 rounded">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span><strong>Subtotal:</strong></span>
+                            <span>₹<span id="modalSubtotal">0.00</span></span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-1">
+                            <span><strong>Discount:</strong></span>
+                            <span>-₹<span id="modalDiscount">0.00</span></span>
+                        </div>
+                        <div class="d-flex justify-content-between fw-bold">
+                            <span><strong>Total Amount:</strong></span>
+                            <span>₹<span id="modalTotalAmount">0.00</span></span>
+                        </div>
+                        <div class="mt-2">
+                            <span><strong>Payment Method:</strong> <span id="modalPaymentMethod">Cash</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="processOrder()">
+                        <i class="fas fa-check me-2"></i>Confirm & Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                                document.getElementById('modalDiscount').textContent = discountAmount.toFixed(2);
-                                document.getElementById('modalTotalAmount').textContent = (subtotal - discountAmount).toFixed(2);
-                            }
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center py-4">
+                    <div class="success-icon mb-3">
+                        <i class="fas fa-check-circle text-success" style="font-size: 3rem;"></i>
+                    </div>
+                    <h5 class="mb-2">Order Completed Successfully!</h5>
+                    <p class="text-muted mb-3">Your order has been processed and saved.</p>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="resetApp()">
+                        Start New Order
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                            // Function to update item quantity
-                            function updateQuantity(index, change) {
-                                const newQuantity = orderItems[index].quantity + change;
-                                if (newQuantity > 0) {
-                                    orderItems[index].quantity = newQuantity;
-                                    updateOrderModal();
-                                } else if (newQuantity === 0) {
-                                    // Remove item if quantity reaches 0
-                                    orderItems.splice(index, 1);
-                                    updateOrderModal();
-                                }
-                            }
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Initialize modal when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function () {
 
-                            // Function to apply discount
-                            function applyDiscount() {
-                                const discountType = document.getElementById('discountType').value;
-                                const discountValue = parseFloat(document.getElementById('discountValue').value) || 0;
 
-                                currentDiscount = {
-                                    type: discountType,
-                                    value: discountValue
-                                };
+            // When save order modal is about to be shown, update the order summary
+            document.getElementById('saveOrderModal').addEventListener('show.bs.modal', function () {
+                // Update the modal with current order details
 
-                                updateOrderModal();
-                            }
+                document.getElementById('modalTotalAmount').textContent =
+                    document.getElementById('totalDisplay').textContent || '0.00';
 
-                            // Function to process the order
-                            function processOrder() {
-                                const totalAmount = parseFloat(document.getElementById('modalTotalAmount').textContent);
-
-                                // Here you would typically send the order to your backend
-                                console.log('Order processed:', {
-                                    items: orderItems,
-                                    subtotal: parseFloat(document.getElementById('modalSubtotal').textContent),
-                                    discount: parseFloat(document.getElementById('modalDiscount').textContent),
-                                    total: totalAmount,
-                                    paymentMethod: currentPaymentMethod
-                                });
-
-                                // Close the modal
-                                const modal = bootstrap.Modal.getInstance(document.getElementById('saveOrderModal'));
-                                modal.hide();
-
-                                // Show success message (you could use a toast or another modal)
-                                alert(`Order for ₹${totalAmount.toFixed(2)} saved successfully!`);
-
-                                // Reset the order (optional)
-                                orderItems = [];
-                                currentDiscount = { type: 'fixed', value: 0 };
-                                updateOrderModal();
-                            }
-
-                            // Initialize when modal is shown
-                            document.getElementById('saveOrderModal').addEventListener('show.bs.modal', function () {
-                                updateOrderModal();
-                            });
-
-                            // Sample function to add items to the order (call this when items are selected)
-                            function addToOrder(item) {
-                                const existingItem = orderItems.find(i => i.id === item.id);
-                                if (existingItem) {
-                                    existingItem.quantity += 1;
-                                } else {
-                                    orderItems.push({
-                                        id: item.id,
-                                        name: item.name,
-                                        price: item.price,
-                                        quantity: 1
-                                    });
-                                }
-                                updateOrderModal();
-                            }
-                            // Process order function (called from confirmation modal)
-                            function processOrder() {
-                                // Here you would typically process the order
-                                console.log('Order processed with:');
-                                console.log('Amount:', document.getElementById('modalTotalAmount').textContent);
-                                console.log('Payment Method:', document.getElementById('modalPaymentMethod').textContent);
-
-                                // Close the save order modal
-                                const saveOrderModal = bootstrap.Modal.getInstance(document.getElementById('saveOrderModal'));
-                                saveOrderModal.hide();
-
-                                // Show success modal (or you could submit to server first)
-                                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                                successModal.show();
-
-                            }
-                           document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('menuSearch');
-    
-    // Assuming you have menu items with a class 'menu-item' and their text is searchable
-    const menuItems = document.querySelectorAll('.menu-item'); // Adjust selector as needed
-    
-    searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
-        
-        menuItems.forEach(item => {
-            const itemText = item.textContent.toLowerCase();
-            if (itemText.includes(searchTerm)) {
-                item.style.display = ''; // Show matching items
-            } else {
-                item.style.display = 'none'; // Hide non-matching items
-            }
+                // Get current payment method (assuming you have this functionality)
+                const paymentMethod = document.querySelector('.payment-btn.active').dataset.method;
+                document.getElementById('modalPaymentMethod').textContent =
+                    paymentMethod === 'cash' ? 'Cash' : 'UPI';
+            });
         });
-    });
-});
-</script>
-                        </script>
-</body>
 
+        // Global variables
+        let orderItems = [];
+        let currentDiscount = { type: 'fixed', value: 0 };
+        let currentPaymentMethod = 'cash';
+        
+        // Sample menu data
+        const menuItems = [
+            { id: 1, name: 'Idli', price: 50, image: 'Idli.jpeg' },
+            { id: 2, name: 'Dosa', price: 100, image: 'Masala-Dosa.jpg' },
+            { id: 3, name: 'Vada', price: 50, image: 'Vada.jpg' },
+            { id: 4, name: 'Biryani', price: 150, image: 'Veg-Dum-Biryani.jpg' },
+            { id: 5, name: 'Noodles', price: 150, image: 'Noodles.jpg' },
+            { id: 6, name: 'Pao Bhaji', price: 150, image: 'PavBhaji.jpg' },
+            { id: 7, name: 'Chicken Curry', price: 250, image: 'red-chicken-curry.jpg' },
+            { id: 8, name: 'Chicken Biryani', price: 250, image: 'Chicken Briyani.jpg' },
+            { id: 9, name: 'Veg Thali', price: 230, image: 'Veg-thali.jpg' },
+            { id: 10, name: 'Samosa', price: 40, image: 'Samosa.jpg' },
+            { id: 11, name: 'Chole Bhature', price: 120, image: 'Chole bhatura.jpg' },
+            { id: 12, name: 'Coffee', price: 110, image: 'Coffee.jpeg' },
+            { id: 13, name: 'Masala Chai', price: 30, image: 'Masala Chai.jpg' },
+            { id: 14, name: 'Lassi', price: 60, image: 'Lassi.jpeg' },
+            { id: 15, name: 'Gulab Jamun', price: 80, image: 'gulab jamun.jpg' }
+        ];
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMenuItems();
+            setupEventListeners();
+        });
+
+        // Load menu items into the grid
+        function loadMenuItems() {
+            const menuGrid = document.getElementById('menuGrid');
+            menuGrid.innerHTML = '';
+            
+            menuItems.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'col-4 mb-3 menu-item';
+                itemElement.innerHTML = `
+                    <div class="card h-100" data-item-id="${item.id}">
+                        <img src="${item.image}" alt="${item.name}" class="card-img-top" style="height: 80px; object-fit: cover;">
+                        <div class="card-body p-2">
+                            <h6 class="card-title mb-1">${item.name}</h6>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-primary fw-bold">₹${item.price}</span>
+                                <button class="btn btn-sm btn-success" onclick="addToOrder(${item.id})">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                menuGrid.appendChild(itemElement);
+            });
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search functionality
+            document.getElementById('menuSearch').addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                document.querySelectorAll('.menu-item').forEach(item => {
+                    const itemName = item.textContent.toLowerCase();
+                    item.style.display = itemName.includes(searchTerm) ? '' : 'none';
+                });
+            });
+            
+            // Payment method selection
+            document.querySelectorAll('.payment-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    currentPaymentMethod = this.dataset.method;
+                    document.querySelectorAll('.payment-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // When order modal is shown, update its contents
+            document.getElementById('saveOrderModal').addEventListener('show.bs.modal', updateOrderModal);
+        }
+
+        // Add item to order
+        function addToOrder(itemId) {
+            const item = menuItems.find(i => i.id === itemId);
+            if (!item) return;
+            
+            const existingItem = orderItems.find(i => i.id === item.id);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                orderItems.push({
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    quantity: 1
+                });
+            }
+            
+            updateTotalDisplay();
+        }
+
+        // Update the total display in footer
+        function updateTotalDisplay() {
+            const subtotal = orderItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            let discountAmount = 0;
+            
+            if (currentDiscount.type === 'percentage') {
+                discountAmount = subtotal * (currentDiscount.value / 100);
+            } else {
+                discountAmount = currentDiscount.value;
+            }
+            
+            // Ensure discount doesn't exceed subtotal
+            discountAmount = Math.min(discountAmount, subtotal);
+            
+            const total = subtotal - discountAmount;
+            document.getElementById('totalDisplay').textContent = total.toFixed(2);
+        }
+
+        // Update the order modal with current items
+        function updateOrderModal() {
+            const orderItemsList = document.getElementById('orderItemsList');
+            orderItemsList.innerHTML = '';
+
+            let subtotal = 0;
+
+            orderItems.forEach((item, index) => {
+                subtotal += item.price * item.quantity;
+
+                const itemElement = document.createElement('div');
+                itemElement.className = 'order-item';
+                itemElement.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="mb-1">${item.name}</h6>
+                            <small class="text-muted">₹${item.price.toFixed(2)} × ${item.quantity}</small>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-sm btn-outline-secondary me-1" onclick="updateQuantity(${index}, -1)">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, 1)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <span class="ms-3 fw-bold">₹${(item.price * item.quantity).toFixed(2)}</span>
+                        </div>
+                    </div>
+                `;
+                orderItemsList.appendChild(itemElement);
+            });
+
+            // Calculate totals
+            document.getElementById('modalSubtotal').textContent = subtotal.toFixed(2);
+
+            let discountAmount = 0;
+            if (currentDiscount.type === 'percentage') {
+                discountAmount = subtotal * (currentDiscount.value / 100);
+            } else {
+                discountAmount = currentDiscount.value;
+            }
+
+            // Ensure discount doesn't exceed subtotal
+            discountAmount = Math.min(discountAmount, subtotal);
+
+            document.getElementById('modalDiscount').textContent = discountAmount.toFixed(2);
+            const totalAmount = subtotal - discountAmount;
+            document.getElementById('modalTotalAmount').textContent = totalAmount.toFixed(2);
+            document.getElementById('modalPaymentMethod').textContent = currentPaymentMethod === 'cash' ? 'Cash' : 'UPI';
+        }
+
+        // Update item quantity
+        function updateQuantity(index, change) {
+            const newQuantity = orderItems[index].quantity + change;
+            if (newQuantity > 0) {
+                orderItems[index].quantity = newQuantity;
+            } else {
+                orderItems.splice(index, 1);
+            }
+            updateOrderModal();
+            updateTotalDisplay();
+        }
+
+        // Apply discount
+        function applyDiscount() {
+            currentDiscount = {
+                type: document.getElementById('discountType').value,
+                value: parseFloat(document.getElementById('discountValue').value) || 0
+            };
+            updateOrderModal();
+            updateTotalDisplay();
+        }
+
+        // Process the order
+        function processOrder() {
+            const totalAmount = parseFloat(document.getElementById('modalTotalAmount').textContent);
+            
+            // Here you would typically send the order to your backend
+            console.log('Order processed:', {
+                items: orderItems,
+                subtotal: parseFloat(document.getElementById('modalSubtotal').textContent),
+                discount: parseFloat(document.getElementById('modalDiscount').textContent),
+                total: totalAmount,
+                paymentMethod: currentPaymentMethod
+            });
+
+            // Close the order modal
+            const orderModal = bootstrap.Modal.getInstance(document.getElementById('saveOrderModal'));
+            orderModal.hide();
+
+            // Show success modal
+            const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            successModal.show();
+        }
+
+        // Reset the app for a new order
+        function resetApp() {
+            orderItems = [];
+            currentDiscount = { type: 'fixed', value: 0 };
+            updateTotalDisplay();
+            
+            // Close success modal
+            const successModal = bootstrap.Modal.getInstance(document.getElementById('successModal'));
+            successModal.hide();
+        }
+    </script>
+</body>
 </html>

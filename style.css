@@ -110,6 +110,10 @@ body {
   border-color: #28a745;
 }
 
+.no-click {
+pointer-events: none;
+}
+
 @keyframes doubleTapPulse {
   0% {
     transform: scale(1);
