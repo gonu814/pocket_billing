@@ -17,7 +17,7 @@ class EZOBillingApp {
       { id: 12, name: "Coffee", price: 110, image: "Coffee.jpeg", category: "Beverages" },
       { id: 13, name: "Masala Chai", price: 30, image: "Masala Chai.jpg", category: "Beverages" },
       { id: 14, name: "Lassi", price: 60, image: "Lassi.jpeg", category: "Beverages" },
-      { id: 15, name: "Gulab Jamun", price: 80, image: "gulab jamun.jpg", category: "Desserts" }
+      { id: 15, name: "Gulab Jamun", price: 80, image: "Gulab Jamun.jpg", category: "Desserts" }
     ];
     this.cart = {}
     this.paymentMethod = "cash"
