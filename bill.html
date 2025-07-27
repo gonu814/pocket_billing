@@ -195,25 +195,55 @@
     </div>
      <script src="app.js"></script>
     <script>
-        // This would be populated with your actual order data
-        function generateBill() {
-            // Get current date and time
-            const now = new Date();
-            const billDate = `${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
-            
-            // Generate random bill number
-            const billNo = Math.floor(1000 + Math.random() * 9000);
-            
-            // Update the bill with dynamic data
-            document.querySelector('.bill-info div:first-child').textContent = `Bill No: ${billNo}`;
-            document.querySelector('.bill-info div:last-child').textContent = `Date: ${billDate}`;
-            
-            // In a real app, you would populate the items from your order data
-            // and calculate totals dynamically
-        }
-        
-        // Call this when the page loads or when generating a new bill
-        generateBill();
+       function generateBill() {
+    // Get order data from localStorage
+    const orderData = JSON.parse(localStorage.getItem('currentOrder'));
+    if (!orderData) {
+        alert('No order data found. Please create an order first.');
+        window.location.href = 'index.html';
+        return;
+    }
+
+    // Format date
+    const date = new Date(orderData.date);
+    const formattedDate = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+    
+    // Generate random bill number
+    const billNo = Math.floor(1000 + Math.random() * 9000);
+    
+    // Update bill header
+    document.querySelector('.bill-info div:first-child').textContent = `Bill No: ${billNo}`;
+    document.querySelector('.bill-info div:last-child').textContent = `Date: ${formattedDate}`;
+    
+    // Add items to bill
+    const itemsContainer = document.getElementById('print-items');
+    itemsContainer.innerHTML = '';
+    
+    orderData.items.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="item-name">${item.name}</td>
+            <td class="item-qty">${item.quantity}</td>
+            <td class="item-price">₹${item.price.toFixed(2)}</td>
+            <td class="item-total">₹${(item.price * item.quantity).toFixed(2)}</td>
+        `;
+        itemsContainer.appendChild(row);
+    });
+    
+    // Update totals
+    document.getElementById('print-subtotal').textContent = orderData.subtotal.toFixed(2);
+    document.getElementById('print-discount').textContent = orderData.discount.toFixed(2);
+    document.getElementById('print-total').textContent = orderData.total.toFixed(2);
+    document.getElementById('print-payment').textContent = orderData.paymentMethod === 'cash' ? 'Cash' : 'UPI';
+    
+    // Auto-print the bill
+    setTimeout(() => {
+        window.print();
+    }, 500);
+}
+
+// Call this when the page loads
+document.addEventListener('DOMContentLoaded', generateBill);
     </script>
 </body>
 </html>

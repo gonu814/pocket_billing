@@ -254,15 +254,13 @@
 
 /* Fixed Calculator Button */
 .calculator-fixed-btn {
-    position: fixed;
-    bottom: 20px;
-    /* right: 20px; */
-    z-index: 1000;
-    left: 8px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
 }
 
 .calculator-fixed-btn button {
-     margin-bottom: 45px;
   width: 50px;
   height: 50px;
   font-size: 1.2rem;
@@ -274,22 +272,10 @@
     bottom: 70px; /* Above the footer */
   }
 }
-/* Default: hidden for screens wider than 768px */
-.responsive-element {
-  display: none;
-}
-
-/* Visible for screens 768px and below */
-@media screen and (max-width: 768px) {
-  .responsive-element {
-    display: block; /* or flex, inline, etc. as needed */
-  }
-}
-
     </style>
 </head>
 
-<body class="responsive-element">
+<body>
     <div class="app-container">
         <!-- Fixed Header (Mobile Only) -->
         <header class="app-header">

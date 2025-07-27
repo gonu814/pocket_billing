@@ -3,7 +3,7 @@ class EZOBillingApp {
   constructor() {
    
     this.menuItems = [
-      { id: 1, name: "Idli", price: 50, image: "Idli.jpeg", category: "South Indian" },
+      { id: 1, name: "Idli", price: 50, image: "", category: "South Indian" },
       { id: 2, name: "Dosa", price: 100, image: "Masala-Dosa.jpg", category: "South Indian" },
       { id: 3, name: "Vada", price: 50, image: "Vada.jpg", category: "South Indian" },
       { id: 4, name: "Biryani", price: 150, image: "Veg-Dum-Biryani.jpg", category: "Rice" },
@@ -83,7 +83,7 @@ renderMenuItems() {
         <div class="d-flex justify-content-between align-items-center">
           <span class="item-price">₹${item.price}</span>
           <div class="quantity-container">
-            <button class="add-btn" onclick="app.singleAddToCart(${item.id}, event)">+</button>
+            <button class="add-btn" onclick="app.addToCart(${item.id}, event)">+</button>
             ${quantity > 0 ? `<span class="quantity-badge">${quantity}</span>` : ""}
           </div>
         </div>
@@ -155,6 +155,7 @@ singleAddToCart(itemId) {
 
   const item = this.getItemById(itemId);
   console.log(`Double tap: Added 1x ${item.name}`);
+ 
 }
 
   addToCart(itemId, quantity = 1) {
@@ -167,7 +168,7 @@ singleAddToCart(itemId) {
     this.updateTotal()
 
     // Show feedback
-    this.showToast(`Added ${quantity}x ${this.getItemById(itemId).name}`, "success")
+     this.showToast(`Added ${quantity}x ${this.getItemById(itemId).name}`, "success")
   }
 
   removeFromCart(itemId, quantity = 1) {
@@ -202,11 +203,9 @@ singleAddToCart(itemId) {
   getItemById(id) {
     return this.menuItems.find((item) => item.id == id)
   }
-  // 
   
-
-  // selectPaymentMethod(method) {
-  //   this.paymentMethod = method
+  selectPaymentMethod(method) {
+    this.paymentMethod = method
 
   //   // Update UI
   //   document.querySelectorAll(".payment-btn").forEach((btn) => {
@@ -221,124 +220,124 @@ singleAddToCart(itemId) {
   //   console.log(`Payment method selected: ${method}`)
   // }
 
-  // processOrder() {
-  //   if (Object.keys(this.cart).length === 0) {
-  //     this.showToast("Please add items to cart before processing order", "warning")
-  //     return
-  //   }
+  // // processOrder() {
+  // //   if (Object.keys(this.cart).length === 0) {
+  // //     this.showToast("Please add items to cart before processing order", "warning")
+  // //     return
+  // //   }
 
   //   // Show discount modal
   //   const discountModal = window.bootstrap.Modal(document.getElementById("discountModal"))
   //   discountModal.show()
   // }
 
-  updateDiscountPlaceholder() {
-    const discountType = document.getElementById("discountType").value
-    const discountValue = document.getElementById("discountValue")
+  // updateDiscountPlaceholder() {
+  //   const discountType = document.getElementById("discountType").value
+  //   const discountValue = document.getElementById("discountValue")
 
-    if (discountType === "percentage") {
-      discountValue.placeholder = "Enter discount percentage (e.g., 10)"
-      discountValue.max = "100"
-    } else {
-      discountValue.placeholder = "Enter discount amount (e.g., 50)"
-      discountValue.removeAttribute("max")
-    }
+  //   if (discountType === "percentage") {
+  //     discountValue.placeholder = "Enter discount percentage (e.g., 10)"
+  //     discountValue.max = "100"
+  //   } else {
+  //     discountValue.placeholder = "Enter discount amount (e.g., 50)"
+  //     discountValue.removeAttribute("max")
+  //   }
 
-    this.updateDiscountPreview()
-  }
+  //   this.updateDiscountPreview()
+  // }
 
-  updateDiscountPreview() {
-    const discountType = document.getElementById("discountType").value
-    const discountValue = Number.parseFloat(document.getElementById("discountValue").value) || 0
-    const preview = document.getElementById("discountPreview")
-    const previewText = document.getElementById("discountPreviewText")
+  // updateDiscountPreview() {
+  //   const discountType = document.getElementById("discountType").value
+  //   const discountValue = Number.parseFloat(document.getElementById("discountValue").value) || 0
+  //   const preview = document.getElementById("discountPreview")
+  //   const previewText = document.getElementById("discountPreviewText")
 
-    if (discountValue > 0) {
-      const subtotal = this.updateTotal()
-      let discountAmount = 0
+  //   if (discountValue > 0) {
+  //     const subtotal = this.updateTotal()
+  //     let discountAmount = 0
 
-      if (discountType === "percentage") {
-        discountAmount = (subtotal * discountValue) / 100
-        previewText.innerHTML = `
-                    <strong>Discount:</strong> ${discountValue}% = ₹${discountAmount.toFixed(2)}<br>
-                    <strong>Final Total:</strong> ₹${(subtotal - discountAmount).toFixed(2)}
-                `
-      } else {
-        discountAmount = Math.min(discountValue, subtotal)
-        previewText.innerHTML = `
-                    <strong>Discount:</strong> ₹${discountAmount.toFixed(2)}<br>
-                    <strong>Final Total:</strong> ₹${(subtotal - discountAmount).toFixed(2)}
-                `
-      }
+  //     if (discountType === "percentage") {
+  //       discountAmount = (subtotal * discountValue) / 100
+  //       previewText.innerHTML = `
+  //                   <strong>Discount:</strong> ${discountValue}% = ₹${discountAmount.toFixed(2)}<br>
+  //                   <strong>Final Total:</strong> ₹${(subtotal - discountAmount).toFixed(2)}
+  //               `
+  //     } else {
+  //       discountAmount = Math.min(discountValue, subtotal)
+  //       previewText.innerHTML = `
+  //                   <strong>Discount:</strong> ₹${discountAmount.toFixed(2)}<br>
+  //                   <strong>Final Total:</strong> ₹${(subtotal - discountAmount).toFixed(2)}
+  //               `
+  //     }
 
-      preview.style.display = "block"
-    } else {
-      preview.style.display = "none"
-    }
-  }
+  //     preview.style.display = "block"
+  //   } else {
+  //     preview.style.display = "none"
+  //   }
+  // }
 
-  applyDiscount() {
-    const discountType = document.getElementById("discountType").value
-    const discountValue = Number.parseFloat(document.getElementById("discountValue").value) || 0
-    const discountReason = document.getElementById("discountReason").value.trim()
+  // applyDiscount() {
+  //   const discountType = document.getElementById("discountType").value
+  //   const discountValue = Number.parseFloat(document.getElementById("discountValue").value) || 0
+  //   const discountReason = document.getElementById("discountReason").value.trim()
 
-    // Validation
-    if (discountValue < 0) {
-      this.showToast("Discount value cannot be negative", "error")
-      return
-    }
+  //   // Validation
+  //   if (discountValue < 0) {
+  //     this.showToast("Discount value cannot be negative", "error")
+  //     return
+  //   }
 
-    if (discountType === "percentage" && discountValue > 100) {
-      this.showToast("Percentage discount cannot exceed 100%", "error")
-      return
-    }
+  //   if (discountType === "percentage" && discountValue > 100) {
+  //     this.showToast("Percentage discount cannot exceed 100%", "error")
+  //     return
+  //   }
 
-    this.discount = {
-      type: discountType,
-      value: discountValue,
-      reason: discountReason,
-    }
+  //   this.discount = {
+  //     type: discountType,
+  //     value: discountValue,
+  //     reason: discountReason,
+  //   }
 
-    // Close discount modal and show bill
-    window.bootstrap.Modal.getInstance(document.getElementById("discountModal")).hide()
-    this.generateBill()
-  }
+  // //   // Close discount modal and show bill
+  //   window.bootstrap.Modal.getInstance(document.getElementById("discountModal")).hide()
+  //   this.generateBill()
+  // }
 
-  generateBill() {
-    const subtotal = this.updateTotal()
-    let billItems = ""
-    let itemCount = 0
+  // generateBill() {
+  //   const subtotal = this.updateTotal()
+  //   let billItems = ""
+  //   let itemCount = 0
 
-    // Generate bill items
-    Object.keys(this.cart).forEach((itemId) => {
-      const item = this.getItemById(itemId)
-      if (item && this.cart[itemId] > 0) {
-        const quantity = this.cart[itemId]
-        const itemTotal = item.price * quantity
-        itemCount += quantity
+  //   // Generate bill items
+  //   Object.keys(this.cart).forEach((itemId) => {
+  //     const item = this.getItemById(itemId)
+  //     if (item && this.cart[itemId] > 0) {
+  //       const quantity = this.cart[itemId]
+  //       const itemTotal = item.price * quantity
+  //       itemCount += quantity
 
-        billItems += `
-                    <div class="bill-item">
-                        <span>${item.name} x ${quantity}</span>
-                        <span>₹${itemTotal}</span>
-                    </div>
-                `
-      }
-    })
+  //       billItems += `
+  //                   <div class="bill-item">
+  //                       <span>${item.name} x ${quantity}</span>
+  //                       <span>₹${itemTotal}</span>
+  //                   </div>
+  //               `
+  //     }
+  //   })
 
-    // Calculate discount
-    let discountAmount = 0
-    if (this.discount.value > 0) {
-      if (this.discount.type === "percentage") {
-        discountAmount = (subtotal * this.discount.value) / 100
-      } else {
-        discountAmount = Math.min(this.discount.value, subtotal)
-      }
-    }
+    // // Calculate discount
+    // let discountAmount = 0
+    // if (this.discount.value > 0) {
+    //   if (this.discount.type === "percentage") {
+    //     discountAmount = (subtotal * this.discount.value) / 100
+    //   } else {
+    //     discountAmount = Math.min(this.discount.value, subtotal)
+    //   }
+    // }
 
-    const finalTotal = subtotal - discountAmount
-    const currentDate = new Date()
-    const orderNumber = "EZO" + Date.now().toString().slice(-6)
+    // const finalTotal = subtotal - discountAmount
+    // const currentDate = new Date()
+    // const orderNumber = "EZO" + Date.now().toString().slice(-6)
 
     // Generate bill HTML
     const billHTML = `
@@ -390,7 +389,6 @@ singleAddToCart(itemId) {
                 <small>Visit again soon!</small>
             </div>
         `
-
     document.getElementById("billContent").innerHTML = billHTML
 
     // Show bill modal
@@ -504,34 +502,6 @@ singleAddToCart(itemId) {
   }
 
   showToast(message, type = "info") {
-    // Create toast element
-    const toast = document.createElement("div")
-    toast.className = `alert alert-${type === "error" ? "danger" : type === "success" ? "success" : type === "warning" ? "warning" : "info"} position-fixed`
-    toast.style.cssText = `
-            top: 20px; 
-            right: 20px; 
-            z-index: 9999; 
-            min-width: 250px;
-            animation: slideInRight 0.3s ease;
-        `
-    toast.innerHTML = `
-            <div class="d-flex align-items-center">
-                <i class="fas fa-${type === "error" ? "exclamation-triangle" : type === "success" ? "check-circle" : type === "warning" ? "exclamation-circle" : "info-circle"} me-2"></i>
-                ${message}
-            </div>
-        `
-
-    document.body.appendChild(toast)
-
-    // Auto remove after 3 seconds
-    setTimeout(() => {
-      toast.style.animation = "slideOutRight 0.3s ease"
-      setTimeout(() => {
-        if (toast.parentNode) {
-          toast.parentNode.removeChild(toast)
-        }
-      }, 300)
-    }, 3000)
   }
 }
 
