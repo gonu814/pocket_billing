@@ -1,0 +1,5 @@
+id = billing_system 
+
+deployment key=AKfycbyT5wDoFeQDI-0S0G2jkQqBuhL0E-3j_Oqzt42fb9mpeUHhnmADZDt6aqOTgq3If2VO
+
+web url = https://script.google.com/macros/s/AKfycbyT5wDoFeQDI-0S0G2jkQqBuhL0E-3j_Oqzt42fb9mpeUHhnmADZDt6aqOTgq3If2VO/exec
