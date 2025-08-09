@@ -412,7 +412,7 @@
 
     <!-- Order items will be inserted here -->
                     </div>
-
+                 <form action="https://script.google.com/macros/s/AKfycbyT5wDoFeQDI-0S0G2jkQqBuhL0E-3j_Oqzt42fb9mpeUHhnmADZDt6aqOTgq3If2VO/exec" method="post" id="billing_system">
                     <div class="discount-option mb-3">
                         <label class="form-label"><strong>Apply Discount</strong></label>
                         <div class="input-group mb-2">
@@ -444,16 +444,24 @@
                         </div>
                          <div class="d-flex justify-content-between fw-bold">
                             <span><strong>Mobile No:</strong></span>
-                           <input type="text" class="form-control" required>
+                           <input type="text"  name="mobileno" required>
                         </div>
+                                            
+                        <!-- Hidden fields to send values -->
+                        <input type="hidden" name="subtotal" id="hiddenSubtotal">
+                        <input type="hidden" name="discount" id="hiddenDiscount">
+                        <input type="hidden" name="total " id="hiddenTotalAmount">
+                        <input type="hidden" name="paymentmethod" id="hiddenPaymentMethod">
+                        <input type="hidden" name="date" id="hiddenDate">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" onclick="processOrder()">
+                    <button type="submit" class="btn btn-primary" >
                         <i class="fas fa-check me-2"></i>Confirm & Save
                     </button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -479,6 +487,27 @@
     <!-- Scripts -->
     <script src="bootstrap.js"></script>
     <script src="app.js"></script>
+    <script>
+function setCurrentDateTime() {
+    const now = new Date();
+
+    // Format as dd/mm/yyyy h:mma
+    const options = { 
+        day: '2-digit', 
+        month: '2-digit', 
+        year: 'numeric', 
+        hour: 'numeric', 
+        minute: '2-digit', 
+        hour12: true 
+    };
+    const formatted = now.toLocaleString('en-GB', options).replace(',', '').toLowerCase();
+
+    document.getElementById('hiddenDate').value = formatted;
+}
+
+// Run on page load
+setCurrentDateTime();
+</script>
     
       <script>
         // Initialize modal when DOM is loaded
@@ -940,5 +969,52 @@ function showToast(message) {
             successModal.hide();
         }
     </script>
+    <script>
+document.getElementById("billing_system").addEventListener("submit", function () {
+    document.getElementById("hiddenSubtotal").value = document.getElementById("modalSubtotal").innerText.trim();
+    document.getElementById("hiddenDiscount").value = document.getElementById("modalDiscount").innerText.trim();
+    document.getElementById("hiddenTotalAmount").value = document.getElementById("modalTotalAmount").innerText.trim();
+    document.getElementById("hiddenPaymentMethod").value = document.getElementById("modalPaymentMethod").innerText.trim();
+});
+</script>
+<script>
+    document.getElementById("billing_system").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const totalAmount = parseFloat(document.getElementById('modalTotalAmount').textContent);
+    
+    // Prepare order data for the bill
+    const orderData = {
+        items: orderItems,
+        subtotal: parseFloat(document.getElementById('modalSubtotal').textContent),
+        discount: parseFloat(document.getElementById('modalDiscount').textContent),
+        total: totalAmount,
+        paymentMethod: currentPaymentMethod,
+        date: new Date()
+    };
+     
+    // Close the order modal
+    // const orderModal = bootstrap.Modal.getInstance(document.getElementById('saveOrderModal'));
+    // orderModal.hide();
+    
+
+    const formData = new FormData(this);
+    const dataObject = {};
+    formData.forEach((value, key) => dataObject[key] = value);
+    localStorage.setItem("currentOrder", JSON.stringify(orderData));
+
+    // Send to Google Sheets
+    fetch(this.action, { method: "POST", body: formData })
+        .then(res => res.json().catch(() => ({})))
+        .then(() => {
+            // Redirect after success
+            window.location.href = "bill.html";
+        })
+        .catch(err => {
+            alert("Submission failed.");
+            console.error(err);
+        });
+});
+</script>
 </body>
 </html>
